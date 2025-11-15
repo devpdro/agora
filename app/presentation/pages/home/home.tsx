@@ -1,0 +1,7 @@
+const Home = () => (
+    <div>
+        <h1>Ola</h1>
+    </div>
+)
+
+export default Home
