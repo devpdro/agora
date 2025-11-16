@@ -9,13 +9,14 @@
   padding: 1.475rem;
 
   .title {
-    font-family: 'Satoshi', sans-serif;
+    font-family: 'Merriweather', sans-serif;
     font-size: 40px;
     line-height: 30px;
     font-weight: 600;
   }
 
   .subtitle {
+    font-family: 'Domine', sans-serif;
     text-align: center;
     font-size: 18px;
     line-height: 27px;
@@ -25,11 +26,11 @@
   }
 
   .card {
+    font-family: 'Domine', sans-serif;
     position: relative;
-    background: #000;
     overflow: hidden;
     box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.06), 0 12px 40px rgba(0, 0, 0, 0.6);
-    border-radius: 28px;
+    border-radius: 25px;
 
     &::after {
       content: "";
@@ -68,10 +69,11 @@
     }
 
     .question {
+
       flex: 1;
       font-weight: 600;
       letter-spacing: 0.01em;
-      font-size: clamp(1rem, 1.8vw, 1.05rem);
+      font-size: clamp(1.025rem, 1.8vw, 1.05rem);
     }
 
     .chevron {
