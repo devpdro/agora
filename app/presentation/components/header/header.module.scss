@@ -1,0 +1,123 @@
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 9rem 1.5rem 7rem;
+  background: transparent; /* assume fundo escuro em globals */
+  position: relative; /* para empilhamento do conteúdo */
+  z-index: 0;
+
+  /* Background restrito à section */
+  .bg {
+    position: absolute; /* ocupa apenas a section */
+    inset: 0;
+    z-index: 0; /* atrás do conteúdo */
+    pointer-events: none;
+    background-image: url('../../assets/images/BURACO.png');
+    background-size: cover;
+    background-position: center center; /* centralizada */
+    background-repeat: no-repeat;
+    opacity: 0.2; /* legibilidade garantida */
+    filter: blur(8px); /* blur opcional */
+  }
+
+  .content {
+    max-width: 1100px;
+    position: relative;
+    z-index: 1; /* acima do background */
+
+    .title {
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      color: #d9d9d9;
+      text-shadow: 0 0 14px rgba(217, 217, 217, 0.08);
+      filter: drop-shadow(0 0 8px rgba(217, 217, 217, 0.06));
+      margin: 0;
+      font-size: clamp(2.4rem, 4.5vw, 4.8rem);
+
+      span {
+        display: block;
+      }
+    }
+
+    .subtitle {
+      margin-top: 1.5rem;
+      font-size: clamp(0.95rem, 1.6vw, 1.1rem);
+      line-height: 1.6;
+      color: rgba(200, 200, 200, 0.7);
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .actionRow {
+      margin-top: 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.25rem;
+      flex-wrap: wrap;
+
+      .ctaButton {
+        appearance: none;
+        border: none;
+        cursor: pointer;
+        padding: 0.95rem 1.6rem;
+        border-radius: 9999px;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        font-size: 0.9rem;
+        text-transform: uppercase;
+        color: #121212;
+        background: linear-gradient(180deg, #ffffff 0%, #f3f3f3 100%);
+        box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.5), 0 0 25px rgba(255, 255, 255, 0.12);
+        transition: box-shadow 0.25s ease, transform 0.15s ease;
+
+        &:hover {
+          box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.35), 0 0 30px rgba(255, 255, 255, 0.18);
+          transform: translateY(-1px);
+        }
+      }
+
+      .socialProof {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+
+        .avatars {
+          display: flex;
+          align-items: center;
+
+          .avatar {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            border: 2px solid rgba(255, 255, 255, 0.9);
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.45);
+            background-size: cover;
+            background-position: center;
+          }
+
+          .avatar + .avatar {
+            margin-left: -10px; /* sobreposição elegante */
+          }
+
+          /* Paleta premium para avatares (gradientes suaves) */
+          .a1 { background: radial-gradient(circle at 30% 30%, #ffd1a1, #e7b27a, #ae8a5a); }
+          .a2 { background: radial-gradient(circle at 30% 30%, #c7e6ff, #87b8e8, #4d6ea5); }
+          .a3 { background: radial-gradient(circle at 30% 30%, #f7c6e1, #d39bbd, #956d8a); }
+          .a4 { background: radial-gradient(circle at 30% 30%, #c3ffc9, #86d9a1, #4a9b6e); }
+          .a5 { background: radial-gradient(circle at 30% 30%, #f9f7c2, #dbd689, #9a9457); }
+        }
+
+        .members {
+          font-size: 0.8rem;
+          color: rgba(255, 255, 255, 0.9);
+          letter-spacing: 0.04em;
+        }
+      }
+    }
+  }
+}

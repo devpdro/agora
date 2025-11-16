@@ -1,0 +1,24 @@
+.footer {
+  background: #000000;
+  border-top: 1px solid rgba(255, 255, 255, 0.06); /* linha sutil no topo */
+}
+
+.inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  height: 42px; /* rodapé discreto */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.text {
+  color: rgba(235, 235, 235, 0.9);
+  font-size: 0.9rem;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+}
+
+.heart {
+  /* mantém a cor do emoji; evita filtros que mudem a aparência */
+}
