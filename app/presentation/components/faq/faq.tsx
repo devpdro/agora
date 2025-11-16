@@ -1,6 +1,7 @@
 "use client";
 
-import React, { useState } from "react";
+import { useState } from "react";
+
 import S from "./faq.module.scss";
 
 type FaqItem = {
@@ -78,9 +79,13 @@ const Item: React.FC<FaqItem> = ({ question, answer }) => {
   );
 };
 
-const FAQ: React.FC = () => {
+const FAQ = () => {
   return (
     <section className={S.wrapper}>
+      <h1 className={S.title}>Perguntas Frequentes</h1>
+      <p className={S.subtitle}>
+        Encontre respostas para as perguntas mais comuns sobre o nosso portal.
+      </p>
       {ITEMS.map((it, idx) => (
         <Item key={idx} question={it.question} answer={it.answer} />
       ))}

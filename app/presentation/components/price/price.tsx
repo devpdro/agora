@@ -1,56 +1,49 @@
 "use client";
 
-import React from "react";
 import styles from "./price.module.scss";
 
 const PriceSection: React.FC = () => {
   return (
-    <section className={styles.section}>
-      <div className={styles.beams} />
-      <div className={styles.stars} />
+    <section className={styles.priceSection}>
+      <h2 className={styles.title}>Compre sua chave de acesso</h2>
 
-      <div className={styles.wrap}>
-        <h2 className={styles.title}>
-          Participe da escola que vai transformar a sua vida.
-        </h2>
-        <p className={styles.subtitle}>
-          Quanto você estaria disposto a investir para estar no controle do seu destino?
-        </p>
+      <p className={styles.subtitle}>
+        Ao comprar sua chave de acesso, automaticamente você receberá o direito
+        de entrar nos grupos, além de acesso ao software e à área de membros.
+      </p>
 
-        <div className={styles.spacer} />
+      <div className={styles.grid}>
+        <article className={styles.card}>
+          <div className={styles.heading}>Plano Trimestral</div>
 
-        <div className={styles.grid}>
-          {/* Plano Mensal */}
-          <div className={styles.card}>
-            <div className={styles.cardTitle}>Plano Mensal</div>
-            <div className={styles.priceRow}>
-              <div className={styles.price}>R$297</div>
-              <div className={styles.suffix}>/ Mensais</div>
-            </div>
-            <button className={styles.button}>Faça parte da Fonte</button>
-            <ul className={styles.list}>
-              <li className={styles.item}><span className={styles.check}>✔️</span> Acesso ao módulo de meditações</li>
-              <li className={styles.item}><span className={styles.check}>✔️</span> Acesso ao módulo Energia Vital</li>
-              <li className={styles.item}><span className={styles.check}>✔️</span> Comunidade exclusiva no WhatsApp</li>
-            </ul>
+          <div className={styles.row}>
+            <div className={styles.priceValue}>R$777</div>
+            <div className={styles.suffix}>/ 3 meses</div>
           </div>
 
-          {/* Plano Anual */}
-          <div className={styles.card}>
-            <div className={styles.cardTitle}>Plano Anual</div>
-            <div className={styles.priceRow}>
-              <div className={styles.price}>R$444</div>
-              <div className={styles.suffix}>/ Anuais</div>
-            </div>
-            <button className={styles.button}>Faça parte da Fonte</button>
-            <ul className={styles.list}>
-              <li className={styles.item}><span className={styles.check}>✔️</span> Acesso ao curso RPM</li>
-              <li className={styles.item}><span className={styles.check}>✔️</span> Acesso ao módulo de meditações</li>
-              <li className={styles.item}><span className={styles.check}>✔️</span> Acesso ao módulo Energia Vital</li>
-              <li className={styles.item}><span className={styles.check}>✔️</span> Comunidade exclusiva no WhatsApp</li>
-            </ul>
-          </div>
-        </div>
+          <button className={styles.button}>
+            GARANTIR MINHA VAGA NO ÁGORA
+          </button>
+
+          <ul className={styles.list}>
+            <li className={styles.item}>
+              <span className={styles.check}>✓</span> Aulas semanais ao vivo
+            </li>
+            <li className={styles.item}>
+              <span className={styles.check}>✓</span> Clube do Livro do Campo
+            </li>
+            <li className={styles.item}>
+              <span className={styles.check}>✓</span> Comunidade exclusiva
+            </li>
+            <li className={styles.item}>
+              <span className={styles.check}>✓</span> Acesso às IAs do campo
+              (Dreamer, Joe Dispensa, Saint Germain)
+            </li>
+            <li className={styles.item}>
+              <span className={styles.check}>✓</span> Gravações de todas as aulas
+            </li>
+          </ul>
+        </article>
       </div>
     </section>
   );

@@ -1,11 +1,11 @@
 import LOGO from "./LOGO.png";
 import TRANCENDER from "./TRANCENDER.jpg";
-import BURACO from "./BURACO.jpg";
-import GOTA from "./GOTA.jpg";
-import BRILHO from "./BRILHO.jpg";
-import ESCADA from "./ESCADA.jpg";
-import LUZ from "./LUZ.jpg";
-import porta from "./porta.jpg";
+import BURACO from "./BURACO.png";
+import GOTA from "./GOTA.png";
+import BRILHO from "./BRILHO.png";
+import ESCADA from "./ESCADA.png";
+import LUZ from "./LUZ.png";
+import PORTA from "./PORTA.png";
 
 export const IMAGE = {
   LOGO,
@@ -15,5 +15,5 @@ export const IMAGE = {
   BRILHO,
   ESCADA,
   LUZ,
-  porta,
+  PORTA,
 };

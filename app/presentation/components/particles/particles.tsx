@@ -14,8 +14,8 @@ type Particle = {
   blur: number; // 0.8 - 1.6 px for depth
 };
 
-const PARTICLE_COUNT = 20; // Entre 15 e 25
-const COLOR = "#505051"; // Cinza médio
+const PARTICLE_COUNT = 25; // Entre 15 e 25
+const COLOR = "#9F9F9F"; // Cinza solicitado
 const SIZE = 4.5; // tamanho único em px (diâmetro)
 // Escala de velocidade para tornar 0.3–0.8 perceptível em px/seg (mediano)
 const VELOCITY_SCALE = 24; // ajuste "mediano" visível

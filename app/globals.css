@@ -1,3 +1,6 @@
+@import url('./config/fonts/stylesheet.css');
+@import url('https://fonts.googleapis.com/css2?family=Domine:wght@400..700&display=swap');
+
 @import "tailwindcss";
 
 :root {
@@ -8,8 +11,9 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: 'Satoshi', 'Gellix', 'Neue Haas Display', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+  --font-serif: 'Domine', Georgia, 'Times New Roman', serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -26,28 +30,8 @@
   box-sizing: border-box;
 }
 
-/* ForÃ§a viewport sem barras do navegador */
-@media screen and (max-width: 768px) {
-  html {
-    height: 100vh;
-    height: -webkit-fill-available;
-  }
-  
-  body {
-    height: 100vh;
-    height: -webkit-fill-available;
-    position: relative;
-    overflow-x: hidden;
-  }
-  
-  /* Remove barra de endereÃ§o e toolbar */
-  .viewport-fix {
-    height: 100vh;
-    height: -webkit-fill-available;
-  }
-}
-
 body {
+  background-color: #fff;
   scroll-behavior: smooth;
   overflow-x: hidden;
   /*
