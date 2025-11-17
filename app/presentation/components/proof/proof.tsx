@@ -1,36 +1,39 @@
-import React from "react";
+import Image, { StaticImageData } from "next/image";
+
+import { IMAGE } from "../../assets/images";
+
 import S from "./proof.module.scss";
 
-type Message = {
-  text: string;
-  size?: "s" | "m" | "l" | "tall" | "wide";
+type SocialImage = {
+  src: StaticImageData;
+  alt: string;
+  size?: "small" | "medium" | "large" | "tall" | "wide";
 };
 
-const MESSAGES: Message[] = [
-  { text: "Felipe, meu amigo, ainda estou no segundo vídeo da comunidade e já explodiu minha mente! 👏👏 Gratidão!", size: "m" },
-  { text: "Nossa, está brabo mesmo... as aulas são incríveis, tem um por a mão na massa, é um trabalho de todos os dias. 💫🙏", size: "s" },
-  { text: "A vida me deu um chamado e a oportunidade de me conectar com a verdadeira fonte da vida. Hoje sinto outra pessoa. ✨", size: "tall" },
-  { text: "Eu tô amando cada aula! Já assisti duas vezes e estou fazendo as meditações 🧘‍♀️", size: "s" },
-  { text: "Depois que entrei na Fonte estou muito mais centrado e presente ❤️", size: "m" },
-  { text: "A comunidade é incrível! Tem mudado minha vida dia após dia 🙏", size: "wide" },
-  { text: "Primeiramente, gratidão pela entrega. Simplicidade e profundidade juntas. Esse campo é vivo. 🌟", size: "m" },
-  { text: "Sinto clareza mental e emocional como nunca. A cada encontro, tudo se organiza. 🔥", size: "l" },
-  { text: "Estou me sentindo em paz com as minhas questões. Seu trabalho é divino 🙌", size: "s" },
+const IMAGES: SocialImage[] = [
+  { src: IMAGE.PROVA_SOCIAL_1, alt: "Prova social 1", size: "medium" },
+  { src: IMAGE.PROVA_SOCIAL_2, alt: "Prova social 2", size: "small" },
+  { src: IMAGE.PROVA_SOCIAL_3, alt: "Prova social 3", size: "tall" },
+  { src: IMAGE.PROVA_SOCIAL_4, alt: "Prova social 4", size: "small" },
+  { src: IMAGE.PROVA_SOCIAL_5, alt: "Prova social 5", size: "medium" },
+  { src: IMAGE.PROVA_SOCIAL_6, alt: "Prova social 6", size: "wide" },
+  { src: IMAGE.PROVA_SOCIAL_7, alt: "Prova social 7", size: "medium" },
+  { src: IMAGE.PROVA_SOCIAL_8, alt: "Prova social 8", size: "large" },
+  { src: IMAGE.PROVA_SOCIAL_9, alt: "Prova social 9", size: "small" },
+  { src: IMAGE.PROVA_SOCIAL_10, alt: "Prova social 10", size: "medium" },
+  { src: IMAGE.PROVA_SOCIAL_11, alt: "Prova social 11", size: "wide" },
 ];
 
 const ProofSection: React.FC = () => {
   return (
     <section className={S.section}>
-      <div className={S.container}>
-        <h2 className={S.title}>Veja o que os alunos da Fonte estão dizendo…</h2>
-
-        <div className={S.grid}>
-          {MESSAGES.map((m, i) => (
-            <div key={i} className={`${S.card} ${m.size ? S[m.size] : ""}`}>
-              <p className={S.text}>{m.text}</p>
-            </div>
-          ))}
-        </div>
+      <h2 className={S.title}>Veja o que os alunos estão dizendo…</h2>
+      <div className={S.grid}>
+        {IMAGES.map((img, i) => (
+          <div key={i} className={`${S.item} ${img.size ? S[img.size] : ""}`}>
+            <Image className={S.media} src={img.src} alt={img.alt} />
+          </div>
+        ))}
       </div>
     </section>
   );
