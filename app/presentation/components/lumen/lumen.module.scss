@@ -1,0 +1,207 @@
+@font-face {
+  font-family: "Aeonik Pro Regular";
+  src: url("https://db.onlinewebfonts.com/t/12ff62164c9778917bddb93c6379cf47.eot");
+  src: url("https://db.onlinewebfonts.com/t/12ff62164c9778917bddb93c6379cf47.eot?#iefix") format("embedded-opentype"),
+    url("https://db.onlinewebfonts.com/t/12ff62164c9778917bddb93c6379cf47.woff2") format("woff2"),
+    url("https://db.onlinewebfonts.com/t/12ff62164c9778917bddb93c6379cf47.woff") format("woff"),
+    url("https://db.onlinewebfonts.com/t/12ff62164c9778917bddb93c6379cf47.ttf") format("truetype"),
+    url("https://db.onlinewebfonts.com/t/12ff62164c9778917bddb93c6379cf47.svg#Aeonik Pro Regular") format("svg");
+}
+
+/* ============================
+   WRAPPER
+============================ */
+.wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 4rem 0;
+}
+
+/* ============================
+   CARD (A BASE DA LUZ)
+============================ */
+.card {
+  position: relative;
+  width: 80rem;
+  height: 24rem;
+  border-radius: 1.8rem;
+}
+
+/* ============================
+   LIGHT LAYER – SISTEMA DE LUZ COMPLETO
+============================ */
+.light-layer {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  transform-style: preserve-3d;
+  perspective: 500px;
+}
+
+/* ============================
+   LINHA
+============================ */
+.slit {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  width: 64%;
+  height: 1.2rem;
+  transform: rotateX(-76deg);
+  background: #fff;
+  /* LUZ ATIVA */
+  box-shadow: 0 0 6px 2px #ffffffee;
+  transition: all 0.4s ease-in-out;
+}
+
+/* ============================
+   FEIXE DE LUZ PARA BAIXO
+============================ */
+.lumen {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  perspective: 400px;
+  opacity: 0.5;
+  /* LUZ ATIVA */
+  transition: opacity 0.4s ease-in-out;
+}
+
+.lumen .min {
+  width: 70%;
+  height: 3rem;
+  background: linear-gradient(#fffa, #fff0);
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 2.5rem;
+  bottom: 0;
+  margin: auto;
+  transform: rotateX(42deg);
+  opacity: 0.4;
+}
+
+.lumen .mid {
+  width: 74%;
+  height: 14rem;
+  background: linear-gradient(#fffa, #fff0);
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 10em;
+  bottom: 0;
+  margin: auto;
+  transform: rotateX(42deg);
+  filter: blur(1.2rem);
+  opacity: 0.8;
+  border-radius: 0 0 100% 100%;
+}
+
+.lumen .hi {
+  width: 50%;
+  height: 15rem;
+  background: linear-gradient(#fffa, #fff0);
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 12em;
+  bottom: 0;
+  margin: auto;
+  transform: rotateX(-22deg);
+  filter: blur(1.2rem);
+  opacity: 0.6;
+  border-radius: 0 0 100% 100%;
+}
+
+/* ============================
+   SOMBREADO / PROFUNDIDADE
+============================ */
+.darken {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  perspective: 400px;
+  opacity: 0.8;
+  /* ATIVO */
+  transition: opacity 0.4s ease-in-out;
+}
+
+.darken .sl {
+  width: 64%;
+  height: 10rem;
+  background: linear-gradient(#0000, #000);
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 9.6em;
+  margin: auto;
+  filter: blur(0.2rem);
+  opacity: 0.2;
+  border-radius: 100% 100% 0 0;
+  transform: rotateX(22deg);
+}
+
+.darken .ll {
+  width: 62%;
+  height: 10rem;
+  background: linear-gradient(#0000, #000a);
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 11em;
+  margin: auto;
+  filter: blur(1rem);
+  opacity: 1;
+  border-radius: 100% 100% 0 0;
+  transform: rotateX(-22deg);
+}
+
+.darken .slt {
+  width: 0.5rem;
+  height: 4rem;
+  background: linear-gradient(#0007, #0000);
+  position: absolute;
+  left: 0;
+  right: 11.5rem;
+  top: 3.9em;
+  bottom: 0;
+  margin: auto;
+  opacity: 1;
+  border-radius: 0 0 100% 100%;
+  transform: skewY(42deg);
+}
+
+.darken .srt {
+  width: 0.5rem;
+  height: 4rem;
+  background: linear-gradient(#0007, #0000);
+  position: absolute;
+  right: 0;
+  left: 11.5rem;
+  top: 3.9em;
+  bottom: 0;
+  margin: auto;
+  opacity: 1;
+  border-radius: 0 0 100% 100%;
+  transform: skewY(-42deg);
+}

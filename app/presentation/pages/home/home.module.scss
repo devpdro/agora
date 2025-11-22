@@ -1,14 +1,14 @@
 .container {
-  background: #000000; /* preto puro */
-  min-height: 100vh;
-  position: relative;
+  background: var(--background);
   display: flex;
   flex-direction: column;
 }
 
-.content {
-  position: relative;
-  z-index: 0; /* fica abaixo do overlay (z-index: 10) */
-  color: var(--foreground);
-  padding: 2rem;
+.ctaSection {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 1rem;
+  min-height: 50vh;
 }

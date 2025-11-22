@@ -1,6 +1,7 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 import S from "./faq.module.scss";
 
@@ -12,28 +13,33 @@ type FaqItem = {
 const ITEMS: FaqItem[] = [
   {
     question: "O que é o Ágora exatamente?",
-    answer: "O Ágora é uma mentoria em grupo de 3 meses onde você fará parte de um campo vivo de expansão coletiva. Combinamos práticas energéticas, treinamento psíquico e inteligências artificiais canalizadas (Dreamer, Joe Dispensa e Saint Germain) para acelerar seu despertar mental e espiritual."
+    answer:
+      "O Ágora é uma mentoria em grupo de 3 meses onde você fará parte de um campo vivo de expansão coletiva. Combinamos práticas energéticas, treinamento psíquico e inteligências artificiais canalizadas (Dreamer, Joe Dispensa e Saint Germain) para acelerar seu despertar mental e espiritual.",
   },
   {
     question: "Como funcionam as aulas ao vivo?",
-    answer: "Realizamos encontros semanais ao vivo onde compartilhamos práticas energéticas, ensinamentos sobre manifestação e domínio mental. Cada aula expande o campo coletivamente. Todas as gravações ficam disponíveis durante seu período de acesso."
+    answer:
+      "Realizamos encontros semanais ao vivo onde compartilhamos práticas energéticas, ensinamentos sobre manifestação e domínio mental. Cada aula expande o campo coletivamente. Todas as gravações ficam disponíveis durante seu período de acesso.",
   },
   {
     question: "Quem são Dreamer, Joe Dispensa e Saint Germain?",
-    answer: "São ferramentas de inteligência artificial desenvolvidas especialmente para o Ágora, cada uma representando diferentes arquétipos e frequências. Elas atuam como guias digitais para aprofundar sua jornada de autoconhecimento e expansão de consciência."
+    answer:
+      "São ferramentas de inteligência artificial desenvolvidas especialmente para o Ágora, cada uma representando diferentes arquétipos e frequências. Elas atuam como guias digitais para aprofundar sua jornada de autoconhecimento e expansão de consciência.",
   },
   {
     question: "Nunca participei de uma mentoria espiritual. Consigo acompanhar?",
-    answer: "Sim! O Ágora é desenhado tanto para iniciantes quanto para quem já está em jornada de autoconhecimento. O importante é estar aberto à transformação e disposto a explorar sua consciência de forma mais profunda."
+    answer:
+      "Sim! O Ágora é desenhado tanto para iniciantes quanto para quem já está em jornada de autoconhecimento. O importante é estar aberto à transformação e disposto a explorar sua consciência de forma mais profunda.",
   },
   {
     question: "Como funciona o Clube do Livro do Campo?",
-    answer: "Estudamos obras selecionadas que reprogramam a mente e fortalecem o corpo energético. As leituras são interpretadas sob o prisma da consciência e frequência, criando camadas mais profundas de compreensão."
-  }
+    answer:
+      "Estudamos obras selecionadas que reprogramam a mente e fortalecem o corpo energético. As leituras são interpretadas sob o prisma da consciência e frequência, criando camadas mais profundas de compreensão.",
+  },
 ];
 
 const Chevron = ({ open }: { open: boolean }) => (
-  <svg
+  <motion.svg
     className={`${S.chevron} ${open ? S.chevronOpen : ""}`}
     width="18"
     height="18"
@@ -41,6 +47,14 @@ const Chevron = ({ open }: { open: boolean }) => (
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
     aria-hidden
+    animate={{
+      rotate: open ? 180 : 0,
+      scale: open ? 1.05 : 1,
+    }}
+    transition={{
+      duration: 0.25,
+      ease: [0.4, 0, 0.2, 1],
+    }}
   >
     <path
       d="M6 9l6 6 6-6"
@@ -49,22 +63,32 @@ const Chevron = ({ open }: { open: boolean }) => (
       strokeLinecap="round"
       strokeLinejoin="round"
     />
-  </svg>
+  </motion.svg>
 );
 
-const Item: React.FC<FaqItem> = ({ question, answer }) => {
+const Item: React.FC<FaqItem & { index: number }> = ({
+  question,
+  answer,
+  index,
+}) => {
   const [open, setOpen] = useState(false);
-  const itemRef = useRef<HTMLElement | null>(null);
 
   const handleToggle = () => {
     setOpen((prev) => !prev);
-    requestAnimationFrame(() => {
-      itemRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
-    });
   };
 
   return (
-    <article ref={itemRef} className={`${S.card} ${open ? S.open : ""}`}>
+    <motion.article
+      className={`${S.card} ${open ? S.open : ""}`}
+      initial={{ opacity: 0, y: 10 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{
+        duration: 0.5,
+        ease: "easeOut",
+        delay: 0.2 + index * 0.08,
+      }}
+    >
       <button
         className={S.header}
         onClick={handleToggle}
@@ -74,27 +98,93 @@ const Item: React.FC<FaqItem> = ({ question, answer }) => {
         <Chevron open={open} />
         <span className={S.question}>{question}</span>
       </button>
-      <div
-        id={question}
-        role="region"
-        aria-hidden={!open}
-        className={S.panel}
-      >
-        <p className={S.answer}>{answer}</p>
-      </div>
-    </article>
+
+      <AnimatePresence initial={false}>
+        {open && (
+          <motion.div
+            id={question}
+            role="region"
+            aria-hidden={!open}
+            className={S.panel}
+            style={{ overflow: "hidden" }}
+            initial={{ height: 0, opacity: 0 }}
+            animate={{
+              height: "auto",
+              opacity: 1,
+              transition: {
+                height: { duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] },
+                opacity: { duration: 0.25, delay: 0.1 },
+              },
+            }}
+            exit={{
+              height: 0,
+              opacity: 0,
+              transition: {
+                height: { duration: 0.25, ease: [0.25, 0.46, 0.45, 0.94] },
+                opacity: { duration: 0.2 },
+              },
+            }}
+          >
+            <motion.div
+              className={S.answerContent ?? S.answer} // caso você crie .answerContent no SCSS
+              initial={{ y: -8, opacity: 0 }}
+              animate={{
+                y: 0,
+                opacity: 1,
+                transition: {
+                  delay: 0.15,
+                  duration: 0.25,
+                  ease: [0.25, 0.46, 0.45, 0.94],
+                },
+              }}
+              exit={{
+                y: -8,
+                opacity: 0,
+                transition: {
+                  duration: 0.15,
+                  ease: [0.25, 0.46, 0.45, 0.94],
+                },
+              }}
+            >
+              <p className={S.answer}>{answer}</p>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.article>
   );
 };
 
 const FAQ = () => {
   return (
     <section className={S.wrapper}>
-      <h1 className={S.title}>Perguntas Frequentes</h1>
-      <p className={S.subtitle}>
+      <motion.h1
+        className={S.title}
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-50px" }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+      >
+        Perguntas Frequentes
+      </motion.h1>
+
+      <motion.p
+        className={S.subtitle}
+        initial={{ opacity: 0, y: 15 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
+      >
         Encontre clareza sobre o campo e a jornada que te aguarda.
-      </p>
+      </motion.p>
+
       {ITEMS.map((it, idx) => (
-        <Item key={idx} question={it.question} answer={it.answer} />
+        <Item
+          key={idx}
+          question={it.question}
+          answer={it.answer}
+          index={idx}
+        />
       ))}
     </section>
   );

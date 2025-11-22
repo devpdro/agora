@@ -4,15 +4,21 @@
   text-align: center;
   color: #fff;
   max-width: 780px;
-  margin: 2.575rem auto 2.575rem auto;
+  margin: 0.575rem auto 2.575rem auto;
   gap: 1.375rem;
   padding: 1.475rem;
 
   .title {
+    text-align: center;
     font-family: 'Merriweather', sans-serif;
     font-size: 40px;
     line-height: 30px;
     font-weight: 600;
+
+    @media (max-width: 768px) {
+      font-size: 32px;
+      line-height: 28px;
+    }
   }
 
   .subtitle {
@@ -23,6 +29,12 @@
     font-weight: 400;
     margin-bottom: 0.675rem;
     color: rgba(255, 255, 255, 0.78);
+
+
+    @media (max-width: 768px) {
+      font-size: 17px;
+      line-height: 26px;
+    }
   }
 
   .card {
@@ -31,6 +43,11 @@
     overflow: hidden;
     box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.06), 0 12px 40px rgba(0, 0, 0, 0.6);
     border-radius: 25px;
+    width: 670px;
+
+    @media (max-width: 768px) {
+      width: 100%;
+    }
 
     &::after {
       content: "";
@@ -87,14 +104,6 @@
 
     .panel {
       overflow: hidden;
-      max-height: 0;
-      opacity: 0;
-      transition: max-height 320ms ease, opacity 240ms ease;
-    }
-
-    &.open .panel {
-      max-height: 280px;
-      opacity: 1;
     }
 
     .answer {

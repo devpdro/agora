@@ -1,7 +1,7 @@
 .priceSection {
   text-align: center;
   max-width: 1280px;
-  margin: 7.5rem auto 6rem;
+  margin: 0rem auto 10.075rem;
   padding: 0 1.5rem;
   position: relative;
   overflow: hidden;
@@ -54,20 +54,114 @@
   }
 
   .card {
-    /* tamanho parecido com o segundo print */
+    position: relative;
     width: min(380px, 100%);
     border-radius: 24px;
+    overflow: hidden;
+    background: #3d3c3d;
+    filter: drop-shadow(0 20px 25px rgba(0, 0, 0, 0.3)) drop-shadow(0 10px 10px rgba(0, 0, 0, 0.2));
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(to right,
+          rgba(255, 255, 255, 0.8) 0%,
+          rgba(255, 255, 255, 0.6) 25%,
+          rgba(255, 255, 255, 0.4) 50%,
+          rgba(255, 255, 255, 0.2) 70%,
+          transparent 100%);
+      z-index: 2;
+      pointer-events: none;
+      box-shadow: 0 0 8px rgba(255, 255, 255, 0.5),
+        0 0 4px rgba(255, 255, 255, 0.3);
+    }
+
+    &::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom,
+          rgba(255, 255, 255, 0.8) 0%,
+          rgba(255, 255, 255, 0.6) 25%,
+          rgba(255, 255, 255, 0.4) 50%,
+          rgba(255, 255, 255, 0.2) 70%,
+          transparent 100%);
+      z-index: 2;
+      pointer-events: none;
+      box-shadow: 0 0 8px rgba(255, 255, 255, 0.5),
+        0 0 4px rgba(255, 255, 255, 0.3);
+    }
+  }
+
+  .lightGlow {
+    position: absolute;
+    width: 224px;
+    height: 192px;
+    background: white;
+    filter: blur(50px);
+    left: -50%;
+    top: -50%;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.6;
+  }
+
+  .cardInner {
+    position: relative;
+    z-index: 1;
     padding: 24px 28px 26px;
     text-align: left;
-
-    /* borda + leve glow */
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    background: radial-gradient(circle at top, #17162b 0%, #050509 55%, #02010a 100%);
-    box-shadow: 0 18px 50px rgba(0, 0, 0, 0.8);
-
+    background: #323132;
+    border-radius: 23px;
+    margin: 2px;
     display: flex;
     flex-direction: column;
     gap: 20px;
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(to right,
+          rgba(255, 255, 255, 0.9) 0%,
+          rgba(255, 255, 255, 0.7) 25%,
+          rgba(255, 255, 255, 0.5) 50%,
+          rgba(255, 255, 255, 0.3) 70%,
+          transparent 100%);
+      z-index: 3;
+      pointer-events: none;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.6),
+        0 0 5px rgba(255, 255, 255, 0.4);
+    }
+
+    &::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom,
+          rgba(255, 255, 255, 0.9) 0%,
+          rgba(255, 255, 255, 0.7) 25%,
+          rgba(255, 255, 255, 0.5) 50%,
+          rgba(255, 255, 255, 0.3) 70%,
+          transparent 100%);
+      z-index: 3;
+      pointer-events: none;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.6),
+        0 0 5px rgba(255, 255, 255, 0.4);
+    }
   }
 
   .heading {

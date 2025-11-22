@@ -3,23 +3,16 @@ import { ReactNode, CSSProperties } from 'react';
 import S from './button.module.scss'
 
 export type ButtonProps = {
-    typeStyle: 'btn1' | 'btn2' | 'btn3';
     size?: 'sm' | 'md' | 'lg';
     label: string;
     width?: string | { base?: string; sm?: string; md?: string; lg?: string; xs?: string };
     onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
     icon?: ReactNode;
     id?: string;
-    accentColor?: string;
+    className?: string;
 };
 
-const Button = ({ typeStyle, label, width, onClick, icon, size = 'md', id, accentColor }: ButtonProps) => {
-    const buttonClasses = {
-        btn1: S.btn1,
-        btn2: S.btn2,
-        btn3: S.btn3,
-    };
-
+const Button = ({ label, width, onClick, icon, size = 'lg', id, className }: ButtonProps) => {
     const sizeClasses = {
         sm: S['btn--sm'],
         md: S['btn--md'],
@@ -38,18 +31,10 @@ const Button = ({ typeStyle, label, width, onClick, icon, size = 'md', id, accen
         };
     };
 
-    const combinedClass = `${S.btn} ${buttonClasses[typeStyle]} ${sizeClasses[size]}`;
-
-    const getAccentVars = (): CSSProperties => {
-        if (!accentColor) return {};
-        if (typeStyle === 'btn1') return { ['--btn1-bg' as any]: accentColor };
-        if (typeStyle === 'btn2') return { ['--btn2-color' as any]: accentColor };
-        if (typeStyle === 'btn3') return { ['--btn3-color' as any]: accentColor };
-        return {};
-    };
+    const combinedClass = `${S.btn} ${S.btn1} ${sizeClasses[size]} ${className || ''}`;
 
     return (
-        <button id={id} className={combinedClass} style={{ ...getResponsiveWidthVars(width), ...getAccentVars() }} onClick={onClick}>
+        <button id={id} className={combinedClass} style={getResponsiveWidthVars(width)} onClick={onClick}>
             {icon && <span className={S.icon}>{icon}</span>}
             {label}
         </button>
@@ -57,6 +42,3 @@ const Button = ({ typeStyle, label, width, onClick, icon, size = 'md', id, accen
 };
 
 export default Button;
-
-// Exemplo de uso responsivo:
-// <Button width={{ base: '100%', md: '350px', lg: '410px' }} typeStyle="btn1" label="Agendar agora" />

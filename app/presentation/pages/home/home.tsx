@@ -1,23 +1,37 @@
-import { Particles, Header, Unique, Price, FAQ, Footer } from '@/app/presentation/components'
+"use client";
+
+import { useTheme } from "next-themes";
+
+import { Header, Works, Proof, Lumen, FAQ, Footer, Particles, Price, UI } from '@/app/presentation/components'
 
 import S from './home.module.scss'
-import Video from '../../components/video/video'
-import ProofSection from '../../components/proof/proof'
+import { CallToAction } from "@/components/ui/cta-3";
 
-const Home = () => (
-  <div className={S.container}>
-    <Particles />
+const Home = () => {
+  const { resolvedTheme, setTheme } = useTheme();
+  const nextTheme = resolvedTheme === 'dark' ? 'light' : 'dark';
 
-    <Header />
-    <Video />
+  return (
+    <div className={S.container}>
 
-    <Unique />
-    <ProofSection />
-    <Price />
-    <FAQ />
-    <Footer />
+      <Header />
+      <UI />
 
-  </div>
-)
+      <Works />
+      <Proof />
+      <Lumen />
+      <Price />
+
+      <section className={S.ctaSection}>
+        <CallToAction />
+      </section>
+
+      <FAQ />
+      <Footer />
+
+      <Particles />
+    </div>
+  );
+}
 
 export default Home

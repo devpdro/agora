@@ -1,6 +1,8 @@
 import Image, { StaticImageData } from "next/image";
 
-import { IMAGE } from "../../assets/images";
+import { IMAGE } from "@/app/presentation/assets/images";
+
+import { BlurFade } from "@/registry/magicui/blur-fade";
 
 import S from "./proof.module.scss";
 
@@ -24,19 +26,25 @@ const IMAGES: SocialImage[] = [
   { src: IMAGE.PROVA_SOCIAL_11, alt: "Prova social 11", size: "wide" },
 ];
 
-const ProofSection: React.FC = () => {
+const Proof = () => {
   return (
     <section className={S.section}>
-      <h2 className={S.title}>Veja o que os alunos estão dizendo…</h2>
+      <div className={S.badge} aria-hidden>TRANSFORMAÇÕES REAIS</div>
+      <h2 className={S.title}>Veja quem já está reescrevendo sua realidade</h2>
       <div className={S.grid}>
         {IMAGES.map((img, i) => (
-          <div key={i} className={`${S.item} ${img.size ? S[img.size] : ""}`}>
+          <BlurFade
+            key={i}
+            delay={0.25 + i * 0.05}
+            inView
+            className={`${S.item} ${img.size ? S[img.size] : ""}`}
+          >
             <Image className={S.media} src={img.src} alt={img.alt} />
-          </div>
+          </BlurFade>
         ))}
       </div>
     </section>
   );
 };
 
-export default ProofSection;
+export default Proof;
