@@ -31,14 +31,13 @@ const Price = () => {
           viewport={{ once: true, margin: "-50px" }}
           transition={{ duration: 0.6, ease: "easeOut" }}
         >
-          <TextShimmer
-            as="h1"
-            duration={3.5}
-            spread={3}
-            className={S.title}
-          >
-            Sua jornada começa aqui
-          </TextShimmer>
+          <h1 className={S.title}>
+            <TextShimmer duration={3.5} spread={3}>Sua</TextShimmer>{" "}
+            <Highlighter action="underline" color="#F6F6F6" animationDuration={800}>
+              <TextShimmer duration={3.5} spread={3}>jornada</TextShimmer>
+            </Highlighter>{" "}
+            <TextShimmer duration={3.5} spread={3}>começa aqui</TextShimmer>
+          </h1>
         </motion.div>
         <motion.p
           className={S.subtitle}
@@ -116,11 +115,13 @@ const Price = () => {
                   delay: 0.4,
                 }}
               >
-                <Button
-                  label="ENTRAR NO CAMPO AGORA"
-                  size="lg"
-                  width="100%"
-                />
+                <a href="https://pay.hotmart.com/S102777434V" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', display: 'block', width: '100%' }}>
+                  <Button
+                    label="ENTRAR NO CAMPO AGORA"
+                    size="lg"
+                    width="100%"
+                  />
+                </a>
               </motion.div>
 
               <motion.ul

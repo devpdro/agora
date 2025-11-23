@@ -1,7 +1,7 @@
 "use client";
 
 
-import { Header, Purpose, Works, Proof, Lumen, FAQ, Footer, Particles, Price, Meta } from '@/app/presentation/components'
+import { Header, Purpose, Video, Works, Proof, Lumen, FAQ, Footer, Particles, Price, Meta, Unique } from '@/app/presentation/components'
 
 import S from './home.module.scss'
 
@@ -13,6 +13,8 @@ const Home = () => {
       <Meta />
       <Header />
       <Purpose />
+      <Video />
+      <Unique />
       <Works />
       <Proof />
       <Price />

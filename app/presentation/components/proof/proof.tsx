@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 
 import { IMAGE } from "@/app/presentation/assets/images";
 import { TextShimmer } from "@/components/ui/text-shimmer";
+import { Highlighter } from "@/components/ui/highlighter";
 
 import { BlurFade } from "@/registry/magicui/blur-fade";
 
@@ -50,14 +51,13 @@ const Proof = () => {
         viewport={{ once: true, margin: "-50px" }}
         transition={{ duration: 0.6, ease: "easeOut" }}
       >
-        <TextShimmer
-          as="h1"
-          duration={3.5}
-          spread={3}
-          className={S.title}
-        >
-          Veja quem já está reescrevendo sua realidade
-        </TextShimmer>
+        <h1 className={S.title}>
+          <TextShimmer duration={3.5} spread={3}>Veja quem já está</TextShimmer>{" "}
+          <Highlighter action="underline" color="#F6F6F6" animationDuration={800}>
+            <TextShimmer duration={3.5} spread={3}>reescrevendo</TextShimmer>
+          </Highlighter>{" "}
+          <TextShimmer duration={3.5} spread={3}>sua realidade</TextShimmer>
+        </h1>
       </motion.div>
       <div className={S.grid}>
         {IMAGES.map((img, i) => (

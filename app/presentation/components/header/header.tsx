@@ -5,7 +5,7 @@ import { GLSLHills } from "@/components/ui/glsl-hills";
 import { MorphingText } from "@/components/ui/morphing-text";
 import { Button } from "@/app/presentation/components";
 
-import { IconEye } from "@tabler/icons-react";
+import { IconSparkles } from "@tabler/icons-react";
 
 import S from "./header.module.scss";
 
@@ -25,7 +25,7 @@ const Header = () => {
                         delay: 0,
                     }}
                 >
-                    <IconEye className={S.badgeIcon} size={14} stroke={2} aria-hidden="true" />
+                    <IconSparkles className={S.badgeIcon} size={14} stroke={2} aria-hidden="true" />
                     <span>Ágora</span>
                 </motion.div>
 
@@ -88,10 +88,12 @@ const Header = () => {
                         delay: 0.4,
                     }}
                 >
-                    <Button
-                        label="ENTRAR NO CAMPO AGORA"
-                        size="lg"
-                    />
+                    <a href="https://pay.hotmart.com/S102777434V" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', display: 'inline-block' }}>
+                        <Button
+                            label="ENTRAR NO CAMPO AGORA"
+                            size="lg"
+                        />
+                    </a>
                 </motion.div>
             </div>
         </header>

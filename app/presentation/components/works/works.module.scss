@@ -3,140 +3,256 @@
     margin: 7rem auto 6rem;
     padding: 0 1.075rem;
     color: #fff;
+}
 
-    .head {
-        text-align: center;
-        margin-bottom: 4rem;
+.container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+}
 
-        .badge {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 6px;
-            padding: 6px 12px;
-            margin: 0 auto 0.875rem;
-            border-radius: 9999px;
-            background: #111;
-            color: #e9e9e9;
-            font-size: 12px;
-            letter-spacing: 0.12em;
-            font-weight: 600;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.03), 0 8px 16px rgba(0, 0, 0, 0.35);
-            text-transform: uppercase;
-            width: max-content;
-        }
+// ==================== COLUNA ESQUERDA ====================
+.leftColumn {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
 
-        .badgeIcon {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            line-height: 1;
-            vertical-align: middle;
-            transform: translateY(-2px);
-        }
+.badge {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 6px;
+    padding: 8px 20px;
+    border-radius: 12px;
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    font-weight: 600;
+    text-transform: uppercase;
+    width: max-content;
+    position: relative;
+    font-family: 'Inter', sans-serif;
 
-        .title {
-            font-family: 'Merriweather', sans-serif;
-            font-size: 42px;
-            line-height: 48px;
-            font-weight: 600;
-            margin-bottom: 2.5rem;
-        }
+    // Gradiente prateado no texto
+    background: linear-gradient(90deg, #E5E4E2 0%, #C0C0C0 50%, #A0A0A0 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+
+    // Borda com gradiente prateado e glow
+    &::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        border-radius: 12px;
+        padding: 1px;
+        background: linear-gradient(90deg,
+                rgba(229, 228, 226, 0.8) 0%,
+                rgba(192, 192, 192, 0.6) 50%,
+                rgba(160, 160, 160, 0.8) 100%);
+        -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+        -webkit-mask-composite: xor;
+        mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+        mask-composite: exclude;
+        filter: blur(0.5px);
     }
 
-    .grid {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 20px;
-        max-width: 1200px;
-        margin: 0 auto;
-        justify-items: center;
+    // Efeito glow adicional
+    box-shadow: 0 0 10px rgba(200, 200, 200, 0.3),
+    0 0 20px rgba(200, 200, 200, 0.2),
+    0 0 30px rgba(200, 200, 200, 0.1);
+}
+
+.badgeIcon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    vertical-align: middle;
+    transform: translateY(-2px);
+    // Aplicar gradiente no ícone também
+    background: linear-gradient(90deg, #E5E4E2 0%, #C0C0C0 50%, #A0A0A0 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+}
+
+.title {
+    font-family: 'Cinzel', sans-serif;
+    font-size: 48px;
+    line-height: 56px;
+    font-weight: 600;
+    color: #fff;
+    margin: 0;
+}
+
+.description {
+    font-family: 'Inter', sans-serif;
+    font-size: 18px;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.85);
+    margin: 0;
+    max-width: 90%;
+}
+
+// ==================== COLUNA DIREITA ====================
+.rightColumn {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+}
+
+.item {
+    display: flex;
+    gap: 1.5rem;
+    align-items: flex-start;
+}
+
+.iconWrapper {
+    width: 48px;
+    height: 48px;
+    min-width: 48px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.95);
+    color: #000;
+    position: relative;
+    flex-shrink: 0;
+
+    svg {
+        color: #000;
+        stroke: #000;
     }
 
-    .card {
-        position: relative;
-        overflow: hidden;
-        border-radius: 32px;
-        padding: 34px 32px;
-        box-shadow:
-            0 0 0 1px rgba(255, 255, 255, 0.06),
-            0 20px 50px rgba(0, 0, 0, 0.65);
-        transform-style: preserve-3d;
-        animation: rot 6s ease-in-out infinite;
-        width: 100%;
-        max-width: 380px;
+    /* Glow effect com gradiente radial */
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.3),
+    0 0 40px rgba(255, 255, 255, 0.2),
+    0 0 60px rgba(255, 255, 255, 0.1),
+    0 4px 12px rgba(0, 0, 0, 0.15),
+    inset 0 0 20px rgba(255, 255, 255, 0.1);
 
-        &::after {
-            content: "";
-            position: absolute;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            height: 58%;
-            background: radial-gradient(120% 90% at 50% 100%,
-                    rgba(200, 200, 200, 0.15) 0%,
-                    rgba(200, 200, 200, 0.07) 40%,
-                    rgba(255, 255, 255, 0) 75%);
-        }
+    /* Gradiente radial para glow nas bordas */
+    background-image: radial-gradient(ellipse at top left, rgba(255, 255, 255, 0.4) 0%, transparent 50%),
+    radial-gradient(ellipse at top, rgba(255, 255, 255, 0.3) 0%, transparent 50%),
+    radial-gradient(ellipse at left, rgba(255, 255, 255, 0.2) 0%, transparent 50%),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.98), rgba(255, 255, 255, 0.95));
+
+    /* Borda sutil com glow */
+    border: 1px solid rgba(255, 255, 255, 0.5);
+
+    overflow: visible;
+
+    /* Pseudo-elemento para glow adicional */
+    &::before {
+        content: '';
+        position: absolute;
+        inset: -2px;
+        border-radius: 50%;
+        background: radial-gradient(ellipse 200% 100% at top left,
+                rgba(255, 255, 255, 0.6) 0%,
+                rgba(255, 255, 255, 0.3) 30%,
+                transparent 70%);
+        opacity: 0.8;
+        z-index: -1;
+        transition: opacity 0.4s ease;
+        filter: blur(8px);
     }
 
-    .cardHeader {
-        display: flex;
+    &::after {
+        content: '';
+        position: absolute;
+        inset: -1px;
+        border-radius: 50%;
+        background: radial-gradient(ellipse 150% 80% at top,
+                rgba(255, 255, 255, 0.5) 0%,
+                transparent 60%);
+        opacity: 0.6;
+        z-index: -1;
+        transition: opacity 0.4s ease;
+        filter: blur(4px);
+    }
+}
+
+.itemContent {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.itemTitle {
+    font-family: 'Cinzel', sans-serif;
+    font-size: 24px;
+    font-weight: 600;
+    color: #fff;
+    margin: 0;
+}
+
+.itemDescription {
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.75);
+    margin: 0;
+}
+
+// ==================== RESPONSIVO ====================
+@media (max-width: 768px) {
+    .section {
+        padding: 0 1rem;
+        margin: 4rem auto 3rem;
+    }
+
+    .container {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+
+    .leftColumn {
         align-items: center;
-        gap: 16px;
-        margin-bottom: 20px;
+        text-align: center;
     }
 
-    .icon {
-        width: 62px;
-        height: 62px;
-        border-radius: 20px;
-        display: grid;
-        place-items: center;
-        background: rgba(255, 255, 255, 0.06);
-        color: #e4e6ff;
-        font-size: 30px;
-        flex-shrink: 0;
+    .badge {
+        margin: 0 auto 0.875rem;
     }
 
-    .cardTitle {
-        font-family: 'Gellix', sans-serif;
-        font-weight: 600;
-        font-size: 21px;
-        margin: 0;
-        flex: 1;
+    .title {
+        font-size: 32px;
+        line-height: 32px;
+        text-align: center;
     }
 
-    .cardDesc {
-        font-family: 'Domine', sans-serif;
-        color: rgba(230, 230, 230, 0.92);
+    .description {
         font-size: 16px;
-        line-height: 1.7;
-        opacity: 0.92;
+        max-width: 100%;
+        text-align: center;
     }
 
-
-    @media (max-width: 1024px) {
-        .grid {
-            grid-template-columns: repeat(2, 1fr);
-            max-width: 800px;
-        }
+    .rightColumn {
+        gap: 2.5rem;
     }
 
-    @media (max-width: 768px) {
-        .grid {
-            grid-template-columns: 1fr;
-            max-width: 100%;
-        }
+    .item {
+        gap: 1.25rem;
+    }
 
-        .card {
-            max-width: 100%;
-        }
+    .iconWrapper {
+        width: 44px;
+        height: 44px;
+        min-width: 44px;
+    }
 
-        .head .title {
-            font-size: 32px;
-            line-height: 38px;
-        }
+    .itemTitle {
+        font-size: 20px;
+    }
+
+    .itemDescription {
+        font-size: 15px;
     }
 }

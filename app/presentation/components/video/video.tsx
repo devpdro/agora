@@ -1,36 +1,76 @@
-import React from "react";
+"use client";
+
+import { motion } from "framer-motion";
+import Script from "next/script";
+
+import { Button } from "@/app/presentation/components";
+
 import S from "./video.module.scss";
 
-const VideoSection: React.FC = () => {
-  return (
-    <section className={S.container}>
-      <div className={S.section}>
-        <div className={S.content}>
-          <div className={S.text}>
-            <h2 className={S.title}>Assista nosso vídeo demonstrativo</h2>
-            <p className={S.subtitle}>Veja detalhadamente como o Kowalski funciona.</p>
-          </div>
-          <div className={S.anchor} aria-hidden />
-        </div>
+declare global {
+    namespace JSX {
+        interface IntrinsicElements {
+            "wistia-player": React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement> & {
+                "media-id"?: string;
+                aspect?: string;
+            };
+        }
+    }
+}
 
-        <div className={S.card}>
-          <div className={S.phone}>
-            <div className={S.bar}>
-              <span className={S.dot} />
-              <span className={S.dot} />
-              <span className={S.dot} />
-            </div>
-            <div className={S.frame}>
-              <button className={S.play} aria-label="Reproduzir vídeo">
-                <span className={S.icon} />
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
+const Video = () => {
+    return (
+        <>
+            <Script
+                src="https://fast.wistia.com/player.js"
+                strategy="lazyOnload"
+            />
+            <Script
+                src="https://fast.wistia.com/embed/cnlxpa4fd2.js"
+                strategy="lazyOnload"
+                type="module"
+            />
+            <section className={S.container} aria-label="Vídeo">
+                <div className={S.wrapper}>
+                    <motion.div
+                        className={S.videoContainer}
+                        initial={{ opacity: 0, y: 40 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true, margin: "-50px" }}
+                        transition={{
+                            duration: 0.6,
+                            ease: [0.25, 0.46, 0.45, 0.94],
+                        }}
+                    >
+                        {/* @ts-ignore */}
+                        <wistia-player
+                            media-id="cnlxpa4fd2"
+                            aspect="0.5625"
+                            className={S.wistiaPlayer}
+                        />
+                    </motion.div>
+                    <motion.div
+                        className={S.ctaWrapper}
+                        initial={{ opacity: 0, scale: 0.95 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        viewport={{ once: true, margin: "-50px" }}
+                        transition={{
+                            duration: 0.6,
+                            ease: [0.25, 0.1, 0.25, 1],
+                            delay: 0.2,
+                        }}
+                    >
+                        <a href="https://pay.hotmart.com/S102777434V" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', display: 'inline-block' }}>
+                            <Button
+                                label="ENTRAR NO CAMPO AGORA"
+                                size="lg"
+                            />
+                        </a>
+                    </motion.div>
+                </div>
+            </section>
+        </>
+    );
 };
 
-export default VideoSection;
-
+export default Video;

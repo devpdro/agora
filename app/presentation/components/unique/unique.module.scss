@@ -1,0 +1,187 @@
+.section {
+  max-width: 1280px;
+  margin: 7rem auto 6rem;
+  padding: 0 2rem;
+  color: #fff;
+
+  .head {
+    text-align: center;
+    margin-bottom: 4rem;
+
+    .badge {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 8px 20px;
+      margin: 0 auto 0.875rem;
+      border-radius: 12px;
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      font-weight: 600;
+      text-transform: uppercase;
+      width: max-content;
+      text-align: center;
+      position: relative;
+      font-family: 'Inter', sans-serif;
+
+      // Gradiente prateado no texto
+      background: linear-gradient(90deg, #E8E8E8 0%, #C0C0C0 50%, #A0A0A0 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      color: transparent;
+
+      // Borda com gradiente prateado e glow
+      &::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        border-radius: 12px;
+        padding: 1px;
+        background: linear-gradient(90deg,
+            rgba(232, 232, 232, 0.8) 0%,
+            rgba(192, 192, 192, 0.6) 50%,
+            rgba(160, 160, 160, 0.8) 100%);
+        -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+        -webkit-mask-composite: xor;
+        mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+        mask-composite: exclude;
+        filter: blur(0.5px);
+      }
+
+      // Efeito glow adicional
+      box-shadow: 0 0 10px rgba(200, 200, 200, 0.3),
+      0 0 20px rgba(200, 200, 200, 0.2),
+      0 0 30px rgba(200, 200, 200, 0.1);
+    }
+
+    .badgeIcon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      line-height: 1;
+      vertical-align: middle;
+      transform: translateY(-2px);
+      // Aplicar gradiente no ícone também
+      background: linear-gradient(90deg, #E8E8E8 0%, #C0C0C0 50%, #A0A0A0 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      color: transparent;
+    }
+
+    .title {
+      font-family: 'Cinzel', sans-serif;
+      font-size: 42px;
+      line-height: 48px;
+      font-weight: 600;
+      margin-bottom: 2.5rem;
+    }
+  }
+
+  .grid {
+    display: flex;
+    gap: 32px;
+    margin: 0 auto;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 32px;
+    padding: 44px 40px;
+    box-shadow:
+      0 0 0 1px rgba(255, 255, 255, 0.06),
+      0 20px 50px rgba(0, 0, 0, 0.65);
+    flex: 1 1 calc(33.33% - 22px);
+    min-width: 300px;
+    max-width: 100%;
+    will-change: transform, opacity;
+
+    &:nth-child(4) {
+      flex: 1 1 100%;
+      min-width: 100%;
+    }
+
+    &::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 58%;
+      background: radial-gradient(120% 90% at 50% 100%,
+          rgba(200, 200, 200, 0.15) 0%,
+          rgba(200, 200, 200, 0.07) 40%,
+          rgba(255, 255, 255, 0) 75%);
+    }
+  }
+
+  .cardHeader {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    margin-bottom: 24px;
+  }
+
+  .icon {
+    width: 62px;
+    height: 62px;
+    border-radius: 20px;
+    display: grid;
+    place-items: center;
+    background: rgba(255, 255, 255, 0.06);
+    color: #e4e6ff;
+    font-size: 30px;
+    flex-shrink: 0;
+  }
+
+  .cardTitle {
+    font-family: 'Merriweather', sans-serif;
+    font-weight: 600;
+    font-size: 24px;
+    margin: 0;
+    flex: 1;
+  }
+
+  .cardDesc {
+    font-family: 'Inter', sans-serif;
+    color: rgba(230, 230, 230, 0.92);
+    font-size: 17px;
+    line-height: 1.7;
+    opacity: 0.92;
+  }
+
+
+  @media (max-width: 1024px) {
+    .grid {
+      gap: 24px;
+    }
+
+    .card {
+      flex: 1 1 calc(50% - 12px);
+      min-width: 300px;
+
+      &:nth-child(4) {
+        flex: 1 1 100%;
+        min-width: 100%;
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    .card {
+      flex: 1 1 100%;
+      min-width: 100%;
+      max-width: 100%;
+    }
+
+    .head .title {
+      font-size: 32px;
+      line-height: 38px;
+    }
+  }
+}

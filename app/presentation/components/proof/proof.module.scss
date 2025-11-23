@@ -1,12 +1,12 @@
 .section {
-  max-width: 1480px;
+  max-width: 1280px;
   margin: 7rem auto 6rem;
   padding: 0 1.075rem;
 
   .title {
     color: #fff;
     text-align: center;
-    font-family: 'Merriweather', sans-serif;
+    font-family: 'Cinzel', sans-serif;
     font-size: 42px;
     line-height: 48px;
     font-weight: 600;
@@ -22,19 +22,47 @@
 
   .badge {
     display: block;
-    padding: 6px 12px;
+    padding: 8px 20px;
     margin: 0 auto 0.875rem;
-    border-radius: 9999px;
-    background: #111;
-    color: #e9e9e9;
+    border-radius: 12px;
+    background: transparent;
     font-size: 12px;
     letter-spacing: 0.12em;
     font-weight: 600;
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.03), 0 8px 16px rgba(0, 0, 0, 0.35);
     text-transform: uppercase;
     width: max-content;
     text-align: center;
+    position: relative;
+
+    // Gradiente prateado no texto
+    background: linear-gradient(90deg, #E8E8E8 0%, #C0C0C0 50%, #A0A0A0 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+
+    // Borda com gradiente prateado e glow
+    &::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 12px;
+      padding: 1px;
+      background: linear-gradient(90deg,
+          rgba(232, 232, 232, 0.8) 0%,
+          rgba(192, 192, 192, 0.6) 50%,
+          rgba(160, 160, 160, 0.8) 100%);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      mask-composite: exclude;
+      filter: blur(0.5px);
+    }
+
+    // Efeito glow adicional
+    box-shadow: 0 0 10px rgba(200, 200, 200, 0.3),
+    0 0 20px rgba(200, 200, 200, 0.2),
+    0 0 30px rgba(200, 200, 200, 0.1);
   }
 
 
@@ -64,7 +92,7 @@
     max-height: 100%;
     object-fit: contain;
     display: block;
-    border-radius: 10px;
+    border-radius: 12px;
   }
 
   .small {
@@ -126,20 +154,26 @@
   }
 
   @media (max-width: 560px) {
+    padding: 0 1rem;
+    margin: 4rem auto 3rem;
+
     .grid {
       grid-template-columns: 1fr;
       grid-auto-rows: auto;
-      gap: 12px;
+      gap: 16px;
     }
 
     .item {
       width: 100%;
+      max-width: 100%;
     }
 
     .media {
       width: 100%;
+      max-width: 100%;
       height: auto;
-      max-height: none;
+      max-height: 400px;
+      object-fit: contain;
     }
 
     .small,
