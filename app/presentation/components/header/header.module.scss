@@ -7,6 +7,11 @@
     align-items: center;
     justify-content: center;
     overflow: hidden;
+    z-index: 2;
+
+    @media (max-width: 580px) {
+        z-index: 10;
+    }
 }
 
 .content {
@@ -26,6 +31,7 @@
     max-width: 1200px;
     padding: 0 32px;
     /* large */
+    will-change: contents;
 
     >* {
         pointer-events: none;
@@ -33,6 +39,13 @@
 
     button {
         pointer-events: auto;
+    }
+
+    @media (max-width: 580px) {
+        top: 50%;
+        transform: translate(-50%, -60%);
+        margin-top: 2rem;
+        padding: 0 1rem;
     }
 }
 
@@ -42,6 +55,11 @@
     line-height: 60px;
     font-weight: 600;
     margin-bottom: 16px;
+    transform: translateZ(0);
+    
+    span {
+        will-change: transform, opacity;
+    }
 }
 
 .morphingWrapper {
@@ -100,6 +118,8 @@
     text-transform: uppercase;
     text-align: center;
     position: relative;
+    transform: translateZ(0);
+    will-change: transform, opacity;
 
     // Borda com gradiente prateado e glow
     &::before {
@@ -156,6 +176,8 @@
     text-align: center;
     color: rgb(150, 150, 150);
     max-width: 560px;
+    transform: translateZ(0);
+    will-change: transform, opacity;
 
     @media (max-width: 768px) {
         font-size: 17px;

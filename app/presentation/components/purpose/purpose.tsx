@@ -1,11 +1,12 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { TextGradientScroll } from "@/components/ui/text-gradient-scroll";
 
 import S from "./purpose.module.scss";
 
 const Purpose = () => {
+    const shouldReduceMotion = useReducedMotion();
     const text = `Formar seres conscientes e psíquicamente despertos. O Àgora não ensina apenas a pensar, ensina a vibrar, criar e sustentar novas realidades. Aqui você aprende a dominar seu campo, não apenas a reagir a ele.`;
 
     return (
@@ -16,12 +17,12 @@ const Purpose = () => {
                         <motion.div
                             className={S.badge}
                             aria-label="O Propósito"
-                            initial={{ opacity: 0, y: 20 }}
+                            initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
+                            viewport={{ once: true, margin: "-100px" }}
                             transition={{
-                                duration: 0.6,
-                                ease: [0.25, 0.46, 0.45, 0.94],
+                                duration: shouldReduceMotion ? 0 : 0.5,
+                                ease: "easeOut",
                             }}
                         >
                             <span className={S.badgeIcon} aria-hidden="true">🜄</span>

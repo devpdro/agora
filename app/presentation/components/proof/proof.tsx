@@ -67,7 +67,14 @@ const Proof = () => {
             inView
             className={`${S.item} ${img.size ? S[img.size] : ""}`}
           >
-            <Image className={S.media} src={img.src} alt={img.alt} />
+            <Image 
+              className={S.media} 
+              src={img.src} 
+              alt={img.alt}
+              loading="lazy"
+              placeholder="blur"
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            />
           </BlurFade>
         ))}
       </div>

@@ -40,7 +40,6 @@ const Unique = () => {
       <header className={S.head}>
         <motion.div
           className={S.badge}
-          aria-label="O que torna o Ágora único"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -49,7 +48,7 @@ const Unique = () => {
             ease: [0.25, 0.46, 0.45, 0.94],
           }}
         >
-          <span id="unico-heading">O QUE TORNA O ÁGORA ÚNICO</span>
+          <span id="unico-heading" aria-label="O que torna o Ágora único">O QUE TORNA O ÁGORA ÚNICO</span>
         </motion.div>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -77,6 +76,7 @@ const Unique = () => {
             <motion.article
               key={index}
               className={S.card}
+              aria-labelledby={`unique-card-${index}-title`}
               initial={{ opacity: 0, y: 10 }}
               whileInView={{
                 y: 0,
@@ -115,6 +115,7 @@ const Unique = () => {
                   <IconComponent size={28} stroke={1.75} />
                 </motion.div>
                 <motion.h3
+                  id={`unique-card-${index}-title`}
                   className={S.cardTitle}
                   initial={{ opacity: 0, y: 10 }}
                   whileInView={{ opacity: 1, y: 0 }}

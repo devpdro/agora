@@ -54,6 +54,8 @@
     text-transform: uppercase;
     text-align: center;
     position: relative;
+    transform: translateZ(0);
+    will-change: transform, opacity;
 
     // Gradiente prateado no texto
     background: linear-gradient(90deg, #E8E8E8 0%, #C0C0C0 50%, #A0A0A0 100%);
@@ -64,27 +66,26 @@
 
     // Borda com gradiente prateado e glow
     &::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      border-radius: 12px;
-      padding: 1px;
-      background: linear-gradient(90deg,
-          rgba(232, 232, 232, 0.8) 0%,
-          rgba(192, 192, 192, 0.6) 50%,
-          rgba(160, 160, 160, 0.8) 100%);
-      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-      -webkit-mask-composite: xor;
-      mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-      mask-composite: exclude;
-      filter: blur(0.5px);
+        content: '';
+        position: absolute;
+        inset: 0;
+        border-radius: 12px;
+        padding: 1px;
+        background: linear-gradient(90deg,
+                rgba(232, 232, 232, 0.8) 0%,
+                rgba(192, 192, 192, 0.6) 50%,
+                rgba(160, 160, 160, 0.8) 100%);
+        -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+        -webkit-mask-composite: xor;
+        mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+        mask-composite: exclude;
+        filter: blur(0.5px);
     }
 
     // Efeito glow adicional
-    box-shadow:
-      0 0 10px rgba(200, 200, 200, 0.3),
-      0 0 20px rgba(200, 200, 200, 0.2),
-      0 0 30px rgba(200, 200, 200, 0.1);
+    box-shadow: 0 0 10px rgba(200, 200, 200, 0.3),
+    0 0 20px rgba(200, 200, 200, 0.2),
+    0 0 30px rgba(200, 200, 200, 0.1);
 
     .badgeIcon {
         display: inline-flex;
@@ -136,5 +137,34 @@
         font-size: 26px;
         line-height: 52px;
         font-weight: 500;
+    }
+}
+
+@media (max-width: 580px) {
+    .container {
+        z-index: 1;
+    }
+
+    .wrapper {
+        position: sticky;
+        top: 0;
+        height: 60vh;
+    }
+
+    .textWrapper {
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+        min-height: auto;
+        padding: 2rem 1rem;
+    }
+
+    .text {
+        font-size: 22px;
+        line-height: 38px;
+    }
+
+    .spacer {
+        height: 15vh;
     }
 }

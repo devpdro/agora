@@ -30,8 +30,17 @@ const Video = () => {
                 strategy="lazyOnload"
                 type="module"
             />
-            <section className={S.container} aria-label="Vídeo">
+            <section className={S.container} aria-labelledby="video-heading">
                 <div className={S.wrapper}>
+                    <motion.h2
+                        id="video-heading"
+                        className={S.srOnly}
+                        initial={{ opacity: 0 }}
+                        whileInView={{ opacity: 1 }}
+                        viewport={{ once: true }}
+                    >
+                        Vídeo de Apresentação do Ágora
+                    </motion.h2>
                     <motion.div
                         className={S.videoContainer}
                         initial={{ opacity: 0, y: 40 }}
@@ -47,6 +56,7 @@ const Video = () => {
                             media-id="cnlxpa4fd2"
                             aspect="0.5625"
                             className={S.wistiaPlayer}
+                            aria-label="Vídeo de apresentação da mentoria Ágora - Expansão Coletiva"
                         />
                     </motion.div>
                     <motion.div

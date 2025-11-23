@@ -1,7 +1,7 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { GLSLHills } from "@/components/ui/glsl-hills";
+import { motion, useReducedMotion } from "framer-motion";
+import dynamic from "next/dynamic";
 import { MorphingText } from "@/components/ui/morphing-text";
 import { Button } from "@/app/presentation/components";
 
@@ -9,7 +9,29 @@ import { IconSparkles } from "@tabler/icons-react";
 
 import S from "./header.module.scss";
 
+const GLSLHills = dynamic(() => import("@/components/ui/glsl-hills").then(mod => ({ default: mod.GLSLHills })), {
+    ssr: false,
+    loading: () => null,
+});
+
 const Header = () => {
+    const shouldReduceMotion = useReducedMotion();
+
+    const fadeInUp = {
+        initial: { opacity: 0, y: shouldReduceMotion ? 0 : 20 },
+        animate: { opacity: 1, y: 0 },
+    };
+
+    const transitionFast = {
+        duration: shouldReduceMotion ? 0 : 0.4,
+        ease: "easeOut" as const,
+    };
+
+    const transitionMedium = {
+        duration: shouldReduceMotion ? 0 : 0.5,
+        ease: "easeOut" as const,
+    };
+
     return (
         <header className={S.container} role="banner">
             <GLSLHills />
@@ -17,13 +39,8 @@ const Header = () => {
                 <motion.div
                     className={S.badge}
                     aria-label="Ágora - Mentoria de Expansão Coletiva"
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{
-                        duration: 0.6,
-                        ease: [0.25, 0.46, 0.45, 0.94],
-                        delay: 0,
-                    }}
+                    {...fadeInUp}
+                    transition={transitionFast}
                 >
                     <IconSparkles className={S.badgeIcon} size={14} stroke={2} aria-hidden="true" />
                     <span>Ágora</span>
@@ -32,25 +49,15 @@ const Header = () => {
                 <h1 className={S.title}>
                     <motion.span
                         style={{ display: "block" }}
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{
-                            duration: 0.6,
-                            ease: [0.25, 0.46, 0.45, 0.94],
-                            delay: 0.1,
-                        }}
+                        {...fadeInUp}
+                        transition={{ ...transitionMedium, delay: shouldReduceMotion ? 0 : 0.08 }}
                     >
                         O campo onde
                     </motion.span>
                     <motion.span
                         style={{ display: "block" }}
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{
-                            duration: 0.6,
-                            ease: [0.25, 0.46, 0.45, 0.94],
-                            delay: 0.2,
-                        }}
+                        {...fadeInUp}
+                        transition={{ ...transitionMedium, delay: shouldReduceMotion ? 0 : 0.16 }}
                     >
                         a realidade se{" "}
                         <span className={S.morphingWrapper}>
@@ -64,13 +71,8 @@ const Header = () => {
 
                 <motion.p
                     className={S.description}
-                    initial={{ opacity: 0, y: 15 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{
-                        duration: 0.5,
-                        ease: [0.25, 0.46, 0.45, 0.94],
-                        delay: 0.3,
-                    }}
+                    {...fadeInUp}
+                    transition={{ ...transitionMedium, delay: shouldReduceMotion ? 0 : 0.24 }}
                 >
                     Uma mentoria em grupo e um campo vivo de expansão coletiva.
 
@@ -80,13 +82,9 @@ const Header = () => {
                 </motion.p>
 
                 <motion.div
-                    initial={{ opacity: 0, scale: 0.95 }}
+                    initial={{ opacity: 0, scale: shouldReduceMotion ? 1 : 0.95 }}
                     animate={{ opacity: 1, scale: 1 }}
-                    transition={{
-                        duration: 0.6,
-                        ease: [0.25, 0.1, 0.25, 1],
-                        delay: 0.4,
-                    }}
+                    transition={{ ...transitionMedium, delay: shouldReduceMotion ? 0 : 0.32 }}
                 >
                     <a href="https://pay.hotmart.com/S102777434V" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', display: 'inline-block' }}>
                         <Button

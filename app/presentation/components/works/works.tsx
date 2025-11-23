@@ -104,9 +104,10 @@ const Works = () => {
                     {items.map((item, index) => {
                         const IconComponent = item.icon;
                         return (
-                            <motion.div
+                            <motion.article
                                 key={index}
                                 className={S.item}
+                                aria-labelledby={`works-item-${index}-title`}
                                 initial={{ opacity: 0, y: 20 }}
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
@@ -132,6 +133,7 @@ const Works = () => {
                                 </motion.div>
                                 <div className={S.itemContent}>
                                     <motion.h3
+                                        id={`works-item-${index}-title`}
                                         className={S.itemTitle}
                                         initial={{ opacity: 0, x: -10 }}
                                         whileInView={{ opacity: 1, x: 0 }}
@@ -158,7 +160,7 @@ const Works = () => {
                                         {item.description}
                                     </motion.p>
                                 </div>
-                            </motion.div>
+                            </motion.article>
                         );
                     })}
                 </div>
