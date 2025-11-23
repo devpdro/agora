@@ -1,6 +1,10 @@
+"use client";
+
 import Image, { StaticImageData } from "next/image";
+import { motion } from "framer-motion";
 
 import { IMAGE } from "@/app/presentation/assets/images";
+import { TextShimmer } from "@/components/ui/text-shimmer";
 
 import { BlurFade } from "@/registry/magicui/blur-fade";
 
@@ -13,24 +17,48 @@ type SocialImage = {
 };
 
 const IMAGES: SocialImage[] = [
-  { src: IMAGE.PROVA_SOCIAL_1, alt: "Prova social 1", size: "medium" },
-  { src: IMAGE.PROVA_SOCIAL_2, alt: "Prova social 2", size: "small" },
-  { src: IMAGE.PROVA_SOCIAL_3, alt: "Prova social 3", size: "tall" },
-  { src: IMAGE.PROVA_SOCIAL_4, alt: "Prova social 4", size: "small" },
-  { src: IMAGE.PROVA_SOCIAL_5, alt: "Prova social 5", size: "medium" },
-  { src: IMAGE.PROVA_SOCIAL_6, alt: "Prova social 6", size: "wide" },
-  { src: IMAGE.PROVA_SOCIAL_7, alt: "Prova social 7", size: "medium" },
+  { src: IMAGE.PROVA_SOCIAL_1, alt: "Prova social 1", size: "large" },
+  { src: IMAGE.PROVA_SOCIAL_9, alt: "Prova social 9", size: "large" },
+  { src: IMAGE.PROVA_SOCIAL_4, alt: "Prova social 4", size: "large" },
+  { src: IMAGE.PROVA_SOCIAL_2, alt: "Prova social 2", size: "large" },
+  { src: IMAGE.PROVA_SOCIAL, alt: "Prova social", size: "large" },
+  { src: IMAGE.PROVA_SOCIAL_7, alt: "Prova social 7", size: "large" },
+  { src: IMAGE.PROVA_SOCIAL_5, alt: "Prova social 5", size: "large" },
   { src: IMAGE.PROVA_SOCIAL_8, alt: "Prova social 8", size: "large" },
-  { src: IMAGE.PROVA_SOCIAL_9, alt: "Prova social 9", size: "small" },
-  { src: IMAGE.PROVA_SOCIAL_10, alt: "Prova social 10", size: "medium" },
-  { src: IMAGE.PROVA_SOCIAL_11, alt: "Prova social 11", size: "wide" },
+  { src: IMAGE.PROVA_SOCIAL_6, alt: "Prova social 6", size: "large" },
 ];
 
 const Proof = () => {
   return (
     <section className={S.section}>
-      <div className={S.badge} aria-hidden>TRANSFORMAÇÕES REAIS</div>
-      <h2 className={S.title}>Veja quem já está reescrevendo sua realidade</h2>
+      <motion.div
+        className={S.badge}
+        aria-hidden
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{
+          duration: 0.6,
+          ease: [0.25, 0.46, 0.45, 0.94],
+        }}
+      >
+        TRANSFORMAÇÕES REAIS
+      </motion.div>
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-50px" }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+      >
+        <TextShimmer
+          as="h1"
+          duration={3.5}
+          spread={3}
+          className={S.title}
+        >
+          Veja quem já está reescrevendo sua realidade
+        </TextShimmer>
+      </motion.div>
       <div className={S.grid}>
         {IMAGES.map((img, i) => (
           <BlurFade

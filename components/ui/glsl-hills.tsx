@@ -4,46 +4,46 @@ import { useEffect, useRef } from 'react';
 import * as THREE from 'three';
 
 interface GLSLHillsProps {
-  width?: string;
-  height?: string;
-  cameraZ?: number;
-  planeSize?: number;
-  speed?: number;
+    width?: string;
+    height?: string;
+    cameraZ?: number;
+    planeSize?: number;
+    speed?: number;
 }
 
-export const GLSLHills = ({ 
-  width = '100vw', 
-  height = '100vh', 
-  cameraZ = 125, 
-  planeSize = 256, 
-  speed = 0.5 
+export const GLSLHills = ({
+    width = '100vw',
+    height = '100vh',
+    cameraZ = 125,
+    planeSize = 256,
+    speed = 0.5
 }: GLSLHillsProps) => {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-  const containerRef = useRef<HTMLDivElement>(null);
+    const canvasRef = useRef<HTMLCanvasElement>(null);
+    const containerRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    if (!canvasRef.current) return;
+    useEffect(() => {
+        if (!canvasRef.current) return;
 
-    // Plane class
-    class Plane {
-      uniforms: { time: { type: string; value: number } };
-      mesh: THREE.Mesh;
-      time: number;
+        // Plane class
+        class Plane {
+            uniforms: { time: { type: string; value: number } };
+            mesh: THREE.Mesh;
+            time: number;
 
-      constructor() {
-        this.uniforms = {
-          time: { type: 'f', value: 0 },
-        };
-        this.mesh = this.createMesh();
-        this.time = speed;
-      }
+            constructor() {
+                this.uniforms = {
+                    time: { type: 'f', value: 0 },
+                };
+                this.mesh = this.createMesh();
+                this.time = speed;
+            }
 
-      createMesh() {
-        return new THREE.Mesh(
-          new THREE.PlaneGeometry(planeSize, planeSize, planeSize, planeSize),
-          new THREE.RawShaderMaterial({
-            uniforms: this.uniforms,
-            vertexShader: `
+            createMesh() {
+                return new THREE.Mesh(
+                    new THREE.PlaneGeometry(planeSize, planeSize, planeSize, planeSize),
+                    new THREE.RawShaderMaterial({
+                        uniforms: this.uniforms,
+                        vertexShader: `
               #define GLSLIFY 1
               attribute vec3 position;
               uniform mat4 projectionMatrix;
@@ -143,7 +143,7 @@ export const GLSLHills = ({
                 gl_Position = projectionMatrix * modelViewMatrix * vec4(lastPosition, 1.0);
               }
             `,
-            fragmentShader: `
+                        fragmentShader: `
               precision highp float;
               #define GLSLIFY 1
               varying vec3 vPosition;
@@ -153,80 +153,81 @@ export const GLSLHills = ({
                 gl_FragColor = vec4(color, opacity);
               }
             `,
-            transparent: true
-          })
-        );
-      }
+                        transparent: true
+                    })
+                );
+            }
 
-      render(time: number) {
-        this.uniforms.time.value += time * this.time;
-      }
-    }
+            render(time: number) {
+                this.uniforms.time.value += time * this.time;
+            }
+        }
 
-    // Three.js setup
-    const renderer = new THREE.WebGLRenderer({ canvas: canvasRef.current, antialias: false });
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 10000);
-    const clock = new THREE.Clock();
-    const plane = new Plane();
+        // Three.js setup
+        const renderer = new THREE.WebGLRenderer({ canvas: canvasRef.current, antialias: false });
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 10000);
+        const clock = new THREE.Clock();
+        const plane = new Plane();
 
-    const resize = () => {
-      const canvas = canvasRef.current;
-      if (!canvas) return;
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-      camera.aspect = window.innerWidth / window.innerHeight;
-      camera.updateProjectionMatrix();
-      renderer.setSize(window.innerWidth, window.innerHeight);
-    };
+        const resize = () => {
+            const canvas = canvasRef.current;
+            if (!canvas) return;
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        };
 
-    const render = () => {
-      plane.render(clock.getDelta());
-      renderer.render(scene, camera);
-    };
+        const render = () => {
+            plane.render(clock.getDelta());
+            renderer.render(scene, camera);
+        };
 
-    let animationFrameId: number;
-    const renderLoop = () => {
-      render();
-      animationFrameId = requestAnimationFrame(renderLoop);
-    };
+        let animationFrameId: number;
+        const renderLoop = () => {
+            render();
+            animationFrameId = requestAnimationFrame(renderLoop);
+        };
 
-    const init = () => {
-      renderer.setSize(window.innerWidth, window.innerHeight);
-      renderer.setClearColor(0x000000, 0);
-      camera.position.set(0, 16, cameraZ);
-      camera.lookAt(new THREE.Vector3(0, 28, 0));
-      scene.add(plane.mesh);
-      window.addEventListener('resize', resize);
-      resize();
-      renderLoop();
-    };
+        const init = () => {
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setClearColor(0x000000, 0);
+            camera.position.set(0, 16, cameraZ);
+            camera.lookAt(new THREE.Vector3(0, 28, 0));
+            scene.add(plane.mesh);
+            window.addEventListener('resize', resize);
+            resize();
+            renderLoop();
+        };
 
-    init();
+        init();
 
-    return () => {
-      window.removeEventListener('resize', resize);
-      if (animationFrameId) {
-        cancelAnimationFrame(animationFrameId);
-      }
-      renderer.dispose();
-    };
-  }, [cameraZ, planeSize, speed]);
+        return () => {
+            window.removeEventListener('resize', resize);
+            if (animationFrameId) {
+                cancelAnimationFrame(animationFrameId);
+            }
+            renderer.dispose();
+        };
+    }, [cameraZ, planeSize, speed]);
 
-  return (
-    <div ref={containerRef} style={{ position: 'relative', width, height }}> 
-      <canvas
-        ref={canvasRef}
-        style={{
-          position: 'absolute',
-          top: 0,
-          right: 0,
-          bottom: 0,
-          left: 0,
-          zIndex: 1
-        }}
-      />
-    </div>
-  );
+    return (
+        <div ref={containerRef} style={{ position: 'relative', width, height }}>
+            <canvas
+                ref={canvasRef}
+                style={{
+                    position: 'absolute',
+                    top: 0,
+                    right: 0,
+                    bottom: 0,
+                    left: 0,
+                    zIndex: 1
+                }}
+            />
+        </div>
+    );
 };
+
 

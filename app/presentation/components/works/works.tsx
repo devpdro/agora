@@ -55,9 +55,11 @@ const Works = () => {
                     }}
                 >
                     Seu{" "}
-                    acesso
+                    <Highlighter action="underline" color="#F6F6F6" animationDuration={800}>
+                        acesso
+                    </Highlighter>
                     ao{" "}
-                    <Highlighter action="underline" color="#F6F6F6">
+                    <Highlighter action="underline" color="#F6F6F6" animationDuration={800}>
                         campo
                     </Highlighter>
                 </motion.h1>
@@ -78,14 +80,56 @@ const Works = () => {
                                 ease: [0.25, 0.46, 0.45, 0.94],
                                 delay: 0.2 + index * 0.08,
                             }}
+                            whileHover={{
+                                y: -4,
+                                transition: {
+                                    duration: 0.3,
+                                    ease: [0.25, 0.46, 0.45, 0.94],
+                                },
+                            }}
                         >
                             <div className={S.cardHeader}>
-                                <div className={S.icon} aria-hidden>
+                                <motion.div
+                                    className={S.icon}
+                                    aria-hidden
+                                    initial={{ opacity: 0, scale: 0.8 }}
+                                    whileInView={{ opacity: 1, scale: 1 }}
+                                    viewport={{ once: true }}
+                                    transition={{
+                                        duration: 0.5,
+                                        ease: [0.25, 0.46, 0.45, 0.94],
+                                        delay: 0.3 + index * 0.08,
+                                    }}
+                                >
                                     <IconComponent size={28} stroke={1.75} />
-                                </div>
-                                <h3 className={S.cardTitle}>{card.title}</h3>
+                                </motion.div>
+                                <motion.h3
+                                    className={S.cardTitle}
+                                    initial={{ opacity: 0, y: 10 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    viewport={{ once: true }}
+                                    transition={{
+                                        duration: 0.5,
+                                        ease: [0.25, 0.46, 0.45, 0.94],
+                                        delay: 0.25 + index * 0.08,
+                                    }}
+                                >
+                                    {card.title}
+                                </motion.h3>
                             </div>
-                            <p className={S.cardDesc}>{card.description}</p>
+                            <motion.p
+                                className={S.cardDesc}
+                                initial={{ opacity: 0, y: 8 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{
+                                    duration: 0.5,
+                                    ease: [0.25, 0.46, 0.45, 0.94],
+                                    delay: 0.3 + index * 0.08,
+                                }}
+                            >
+                                {card.description}
+                            </motion.p>
                         </motion.article>
                     );
                 })}

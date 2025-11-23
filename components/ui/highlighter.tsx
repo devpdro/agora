@@ -1,103 +1,92 @@
-"use client"
+"use client";
 
-import { useEffect, useRef } from "react"
-import type React from "react"
-import { useInView } from "motion/react"
-import { annotate } from "rough-notation"
-import { type RoughAnnotation } from "rough-notation/lib/model"
+import React, { useEffect, useRef, useState } from "react";
+import { motion } from "framer-motion";
 
-type AnnotationAction =
-  | "highlight"
-  | "underline"
-  | "box"
-  | "circle"
-  | "strike-through"
-  | "crossed-off"
-  | "bracket"
+import { cn } from "@/lib/utils";
 
 interface HighlighterProps {
-  children: React.ReactNode
-  action?: AnnotationAction
-  color?: string
-  strokeWidth?: number
-  animationDuration?: number
-  iterations?: number
-  padding?: number
-  multiline?: boolean
-  isView?: boolean
+  children: React.ReactNode;
+  action?: "highlight" | "underline";
+  color?: string;
+  className?: string;
+  animationDuration?: number;
 }
 
 export function Highlighter({
   children,
   action = "highlight",
-  color = "#ffd1dc",
-  strokeWidth = 1.5,
-  animationDuration = 600,
-  iterations = 2,
-  padding = 2,
-  multiline = true,
-  isView = false,
+  color = "#FFD700",
+  className,
+  animationDuration = 1000,
 }: HighlighterProps) {
-  const elementRef = useRef<HTMLSpanElement>(null)
-  const annotationRef = useRef<RoughAnnotation | null>(null)
-
-  const isInView = useInView(elementRef, {
-    once: true,
-    margin: "-10%",
-  })
-
-  // If isView is false, always show. If isView is true, wait for inView
-  const shouldShow = !isView || isInView
+  const [isVisible, setIsVisible] = useState(false);
+  const ref = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
-    if (!shouldShow) return
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.1 }
+    );
 
-    const element = elementRef.current
-    if (!element) return
-
-    const annotationConfig = {
-      type: action,
-      color,
-      strokeWidth,
-      animationDuration,
-      iterations,
-      padding,
-      multiline,
+    if (ref.current) {
+      observer.observe(ref.current);
     }
 
-    const annotation = annotate(element, annotationConfig)
+    return () => observer.disconnect();
+  }, []);
 
-    annotationRef.current = annotation
-    annotationRef.current.show()
-
-    const resizeObserver = new ResizeObserver(() => {
-      annotation.hide()
-      annotation.show()
-    })
-
-    resizeObserver.observe(element)
-    resizeObserver.observe(document.body)
-
-    return () => {
-      if (element) {
-        annotate(element, { type: action }).remove()
-        resizeObserver.disconnect()
-      }
-    }
-  }, [
-    shouldShow,
-    action,
-    color,
-    strokeWidth,
-    animationDuration,
-    iterations,
-    padding,
-    multiline,
-  ])
+  if (action === "underline") {
+    return (
+      <span
+        ref={ref}
+        className={cn("relative inline-block", className)}
+        style={{
+          textDecoration: "none",
+        }}
+      >
+        {children}
+        <motion.span
+          className="absolute bottom-0 left-0 right-0 h-[2px]"
+          style={{
+            backgroundColor: color,
+          }}
+          initial={{ scaleX: 0 }}
+          animate={isVisible ? { scaleX: 1 } : { scaleX: 0 }}
+          transition={{
+            duration: animationDuration / 1000,
+            ease: [0.25, 0.46, 0.45, 0.94],
+          }}
+        />
+      </span>
+    );
+  }
 
   return (
-    <span ref={elementRef} className="relative inline-block bg-transparent">
+    <span
+      ref={ref}
+      className={cn("relative inline-block px-1", className)}
+    >
       {children}
+      <motion.span
+        className="absolute inset-0 -z-10"
+        style={{
+          backgroundColor: color,
+          opacity: 0.3,
+        }}
+        initial={{ scaleX: 0 }}
+        animate={isVisible ? { scaleX: 1 } : { scaleX: 0 }}
+        transition={{
+          duration: animationDuration / 1000,
+          ease: [0.25, 0.46, 0.45, 0.94],
+        }}
+      />
     </span>
-  )
+  );
 }
+

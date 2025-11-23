@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { TextShimmer } from "@/components/ui/text-shimmer";
 
 import S from "./faq.module.scss";
 
@@ -72,6 +73,8 @@ const Item: React.FC<FaqItem & { index: number }> = ({
   index,
 }) => {
   const [open, setOpen] = useState(false);
+  const itemId = `faq-item-${index}`;
+  const panelId = `faq-panel-${index}`;
 
   const handleToggle = () => {
     setOpen((prev) => !prev);
@@ -80,6 +83,8 @@ const Item: React.FC<FaqItem & { index: number }> = ({
   return (
     <motion.article
       className={`${S.card} ${open ? S.open : ""}`}
+      itemScope
+      itemType="https://schema.org/Question"
       initial={{ opacity: 0, y: 10 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
@@ -93,19 +98,23 @@ const Item: React.FC<FaqItem & { index: number }> = ({
         className={S.header}
         onClick={handleToggle}
         aria-expanded={open}
-        aria-controls={question}
+        aria-controls={panelId}
+        aria-label={`${open ? "Fechar" : "Abrir"} pergunta: ${question}`}
       >
         <Chevron open={open} />
-        <span className={S.question}>{question}</span>
+        <span className={S.question} itemProp="name">{question}</span>
       </button>
 
       <AnimatePresence initial={false}>
         {open && (
           <motion.div
-            id={question}
+            id={panelId}
             role="region"
+            aria-labelledby={itemId}
             aria-hidden={!open}
             className={S.panel}
+            itemScope
+            itemType="https://schema.org/Answer"
             style={{ overflow: "hidden" }}
             initial={{ height: 0, opacity: 0 }}
             animate={{
@@ -126,7 +135,7 @@ const Item: React.FC<FaqItem & { index: number }> = ({
             }}
           >
             <motion.div
-              className={S.answerContent ?? S.answer} // caso você crie .answerContent no SCSS
+              className={S.answer}
               initial={{ y: -8, opacity: 0 }}
               animate={{
                 y: 0,
@@ -146,7 +155,7 @@ const Item: React.FC<FaqItem & { index: number }> = ({
                 },
               }}
             >
-              <p className={S.answer}>{answer}</p>
+              <p itemProp="text">{answer}</p>
             </motion.div>
           </motion.div>
         )}
@@ -157,16 +166,27 @@ const Item: React.FC<FaqItem & { index: number }> = ({
 
 const FAQ = () => {
   return (
-    <section className={S.wrapper}>
-      <motion.h1
-        className={S.title}
+    <section
+      className={S.wrapper}
+      aria-label="Perguntas frequentes sobre o Ágora"
+      itemScope
+      itemType="https://schema.org/FAQPage"
+    >
+      <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-50px" }}
         transition={{ duration: 0.6, ease: "easeOut" }}
       >
-        Perguntas Frequentes
-      </motion.h1>
+        <TextShimmer
+          as="h1"
+          duration={3.5}
+          spread={3}
+          className={S.title}
+        >
+          Perguntas Frequentes
+        </TextShimmer>
+      </motion.div>
 
       <motion.p
         className={S.subtitle}

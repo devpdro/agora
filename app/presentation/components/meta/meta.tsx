@@ -12,14 +12,14 @@ export type MetaProps = {
   twitterSite?: string
 }
 
-const DEFAULT_TITLE = 'Transforme recebíveis em capital imediato | Confia Capital'
-const DEFAULT_DESCRIPTION = 'Securitização de recebíveis com liquidação em até 48h. Operações estruturadas que transformam duplicatas e contratos em capital sem impactar o balanço.'
-const DEFAULT_KEYWORDS = 'securitização de recebíveis, antecipação de duplicatas, cessão fiduciária, capital de giro, securitizadora CVM, liquidez empresarial, certificados de recebíveis, CRI CRA, operações estruturadas, transformar recebíveis em dinheiro'
-const DEFAULT_IMAGE = 'http://confiacapital.com.br/og-home.png'
+const DEFAULT_TITLE = 'Ágora'
+const DEFAULT_DESCRIPTION = 'Mentoria em grupo de 3 meses onde você fará parte de um campo vivo de expansão coletiva. Práticas energéticas, treinamento psíquico e inteligências artificiais canalizadas (Dreamer, Joe Dispensa e Saint Germain) para acelerar seu despertar mental e espiritual.'
+const DEFAULT_KEYWORDS = 'mentoria espiritual, expansão de consciência, autoconhecimento, práticas energéticas, treinamento psíquico, manifestação, domínio mental, campo de expansão coletiva, clube do livro, inteligência artificial espiritual, despertar espiritual, transformação pessoal, Felipe mentoria, Ágora'
+const DEFAULT_IMAGE = '/og-image.png'
 const DEFAULT_OG_TYPE = 'website'
-const DEFAULT_OG_SITE_NAME = 'Confia Capital'
+const DEFAULT_OG_SITE_NAME = 'Ágora'
 const DEFAULT_TWITTER_CARD = 'summary_large_image'
-const DEFAULT_TWITTER_SITE = '@confiacapital'
+const DEFAULT_TWITTER_SITE = ''
 
 const Meta = ({
   title,

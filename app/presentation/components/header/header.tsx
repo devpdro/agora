@@ -1,12 +1,11 @@
 "use client";
 
+import { motion } from "framer-motion";
 import { GLSLHills } from "@/components/ui/glsl-hills";
 import { MorphingText } from "@/components/ui/morphing-text";
-import { motion } from "framer-motion";
+import { Button } from "@/app/presentation/components";
 
 import { IconEye } from "@tabler/icons-react";
-
-import { Button } from "@/app/presentation/components";
 
 import S from "./header.module.scss";
 
