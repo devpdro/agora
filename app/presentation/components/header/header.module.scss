@@ -44,7 +44,7 @@
     @media (max-width: 580px) {
         top: 50%;
         transform: translate(-50%, -60%);
-        margin-top: 5rem;
+        margin-top: 1.575rem;
         padding: 0 1rem;
     }
 }
@@ -56,7 +56,7 @@
     font-weight: 600;
     margin-bottom: 16px;
     transform: translateZ(0);
-    
+
     span {
         will-change: transform, opacity;
     }

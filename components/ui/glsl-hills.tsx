@@ -172,12 +172,18 @@ export const GLSLHills = ({
 
         const resize = () => {
             const canvas = canvasRef.current;
-            if (!canvas) return;
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-            camera.aspect = window.innerWidth / window.innerHeight;
+            const container = containerRef.current;
+            if (!canvas || !container) return;
+            
+            const rect = container.getBoundingClientRect();
+            const width = rect.width || window.innerWidth;
+            const height = rect.height || window.innerHeight;
+            
+            canvas.width = width;
+            canvas.height = height;
+            camera.aspect = width / height;
             camera.updateProjectionMatrix();
-            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setSize(width, height);
         };
 
         const render = () => {
@@ -192,7 +198,14 @@ export const GLSLHills = ({
         };
 
         const init = () => {
-            renderer.setSize(window.innerWidth, window.innerHeight);
+            const container = containerRef.current;
+            if (!container) return;
+            
+            const rect = container.getBoundingClientRect();
+            const width = rect.width || window.innerWidth;
+            const height = rect.height || window.innerHeight;
+            
+            renderer.setSize(width, height);
             renderer.setClearColor(0x000000, 0);
             camera.position.set(0, 16, cameraZ);
             camera.lookAt(new THREE.Vector3(0, 28, 0));
@@ -214,7 +227,7 @@ export const GLSLHills = ({
     }, [cameraZ, planeSize, speed]);
 
     return (
-        <div ref={containerRef} style={{ position: 'relative', width, height }}>
+        <div ref={containerRef} style={{ position: 'absolute', top: 0, left: 0, width, height, zIndex: 0 }}>
             <canvas
                 ref={canvasRef}
                 style={{
@@ -223,7 +236,8 @@ export const GLSLHills = ({
                     right: 0,
                     bottom: 0,
                     left: 0,
-                    zIndex: 1
+                    zIndex: 1,
+                    pointerEvents: 'none'
                 }}
             />
         </div>
