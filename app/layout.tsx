@@ -49,9 +49,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="pt-br" className={`${inter.variable} ${merriweather.variable} ${cinzel.variable}`}>
-      <body className={`antialiased`}>
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+    <html lang="pt-br" className={`${inter.variable} ${merriweather.variable} ${cinzel.variable}`} suppressHydrationWarning>
+      <body className={`antialiased`} suppressHydrationWarning>
+        <ThemeProvider 
+          attribute="class" 
+          defaultTheme="dark" 
+          enableSystem={false}
+          disableTransitionOnChange
+        >
           {children}
         </ThemeProvider>
       </body>

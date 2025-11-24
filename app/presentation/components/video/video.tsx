@@ -23,7 +23,10 @@ const Video = () => {
         <>
             <Script
                 src="https://fast.wistia.com/player.js"
-                strategy="lazyOnload"
+                strategy="afterInteractive"
+                onLoad={() => {
+                    // Script carregado
+                }}
             />
             <Script
                 src="https://fast.wistia.com/embed/cnlxpa4fd2.js"

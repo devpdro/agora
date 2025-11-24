@@ -1,4 +1,5 @@
-import Head from 'next/head'
+// Meta tags são gerenciadas pelo layout.tsx usando metadata do Next.js
+// Este componente é mantido apenas para compatibilidade, mas não renderiza nada
 
 export type MetaProps = {
   title?: string
@@ -39,31 +40,9 @@ const Meta = ({
     ? description.slice(0, 157) + '...'
     : (description || DEFAULT_DESCRIPTION)
 
-  return (
-    <Head>
-      <title>{pageTitle}</title>
-      <meta name="description" content={metaDescription} />
-      <meta name="keywords" content={keywords || DEFAULT_KEYWORDS} />
-      <meta name="robots" content="index, follow" />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <link rel="canonical" href={url} />
-
-      {/* Open Graph */}
-      <meta property="og:title" content={pageTitle} />
-      <meta property="og:description" content={metaDescription} />
-      <meta property="og:image" content={image || DEFAULT_IMAGE} />
-      <meta property="og:type" content={ogType || DEFAULT_OG_TYPE} />
-      <meta property="og:url" content={url} />
-      <meta property="og:site_name" content={ogSiteName || DEFAULT_OG_SITE_NAME} />
-
-      {/* Twitter Card */}
-      <meta name="twitter:card" content={twitterCard || DEFAULT_TWITTER_CARD} />
-      <meta name="twitter:site" content={twitterSite || DEFAULT_TWITTER_SITE} />
-      <meta name="twitter:title" content={pageTitle} />
-      <meta name="twitter:description" content={metaDescription} />
-      <meta name="twitter:image" content={image || DEFAULT_IMAGE} />
-    </Head>
-  )
+  // Meta tags são gerenciadas pelo layout.tsx
+  // Não renderiza nada para evitar blocking render
+  return null
 }
 
 export default Meta

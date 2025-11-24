@@ -1,7 +1,7 @@
 "use client";
 
 import dynamic from 'next/dynamic';
-import { Header, Purpose, Video, Works, Proof, FAQ, Footer, Price, Meta, Unique } from '@/app/presentation/components'
+import { Header, Purpose, Video, Works, Proof, FAQ, Footer, Price, Unique } from '@/app/presentation/components'
 
 import S from './home.module.scss'
 
@@ -19,7 +19,6 @@ const Particles = dynamic(() => import('@/app/presentation/components/particles/
 const Home = () => {
   return (
     <div className={S.container}>
-      <Meta />
       <Header />
       <Purpose />
       <Video />

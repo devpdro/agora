@@ -39,6 +39,7 @@
   aspect-ratio: 9 / 16; // Proporção de celular vertical (portrait)
   overflow: hidden;
   border-radius: 12px;
+  min-height: 640px; // Altura mínima para evitar CLS
 }
 
 .wistiaPlayer {

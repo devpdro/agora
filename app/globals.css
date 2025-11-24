@@ -10,6 +10,18 @@
   box-sizing: border-box;
 }
 
+/* Otimizações de performance */
+img, picture, video, canvas, svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/* Previne layout shift em imagens */
+img[loading="lazy"] {
+  content-visibility: auto;
+}
+
 body {
   background-color: #fff;
   scroll-behavior: smooth;
