@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { TextShimmer } from "@/components/ui/text-shimmer";
+import { Button } from "../form";
 
 import S from "./faq.module.scss";
 
@@ -206,6 +207,25 @@ const FAQ = () => {
           index={idx}
         />
       ))}
+
+      <motion.div
+        className={S.cta}
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-50px" }}
+        transition={{
+          duration: 0.6,
+          ease: [0.25, 0.1, 0.25, 1],
+          delay: 0.3,
+        }}
+      >
+        <a href="https://pay.hotmart.com/S102777434V" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', display: 'inline-block' }}>
+          <Button
+            label="ENTRAR NO CAMPO AGORA"
+            size="lg"
+          />
+        </a>
+      </motion.div>
     </section>
   );
 };

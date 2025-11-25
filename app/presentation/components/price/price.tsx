@@ -179,7 +179,7 @@ const Price = () => {
                     src={IMAGE.LOGO}
                     alt="A Fonte"
                     className={S.logoInline}
-                    width={110}
+                    width={120}
                     height={36}
                   />
                 </motion.li>
