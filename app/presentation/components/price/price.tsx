@@ -1,9 +1,11 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { Button } from "@/app/presentation/components";
 import { Highlighter } from "@/components/ui/highlighter";
 import { TextShimmer } from "@/components/ui/text-shimmer";
+import { IMAGE } from "@/app/presentation/assets/images";
 
 import S from "./price.module.scss";
 
@@ -73,7 +75,10 @@ const Price = () => {
             }}
           >
             <div className={S.topIcon}>
-              <span className={S.iconSymbol}>✦</span>
+              <span className={S.iconSymbol}>
+                <span>✦</span>
+                <span>Black November</span>
+              </span>
             </div>
             <div className={S.cardInner}>
               <motion.div
@@ -157,6 +162,27 @@ const Price = () => {
                     <span className={S.check} aria-hidden="true">✓</span> {item}
                   </motion.li>
                 ))}
+                <motion.li
+                  className={S.item}
+                  initial={{ opacity: 0, x: -10 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{
+                    duration: 0.4,
+                    ease: [0.25, 0.46, 0.45, 0.94],
+                    delay: 0.5 + 5 * 0.05,
+                  }}
+                >
+                  <span className={S.check} aria-hidden="true">✓</span>{" "}
+                  <span>Acesso à escola </span>
+                  <Image
+                    src={IMAGE.LOGO}
+                    alt="A Fonte"
+                    className={S.logoInline}
+                    width={110}
+                    height={36}
+                  />
+                </motion.li>
               </motion.ul>
             </div>
           </motion.article>

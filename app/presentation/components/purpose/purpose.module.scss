@@ -132,6 +132,17 @@
     z-index: 0;
 }
 
+// Breakpoint específico para MacBook (1559x975)
+@media (min-width: 1400px) and (max-width: 1600px) and (min-height: 900px) and (max-height: 1000px) {
+    .container {
+        padding-top: 9vh;
+    }
+
+    .wrapper {
+        height: 45vh;
+    }
+}
+
 @media (max-width: 768px) {
     .text {
         font-size: 26px;

@@ -1,5 +1,6 @@
 "use client";
 
+import { memo } from "react";
 import Image, { StaticImageData } from "next/image";
 import { motion } from "framer-motion";
 
@@ -29,7 +30,7 @@ const IMAGES: SocialImage[] = [
   { src: IMAGE.PROVA_SOCIAL_6, alt: "Prova social 6", size: "large" },
 ];
 
-const Proof = () => {
+const Proof = memo(() => {
   return (
     <section className={S.section}>
       <motion.div
@@ -80,6 +81,8 @@ const Proof = () => {
       </div>
     </section>
   );
-};
+});
+
+Proof.displayName = 'Proof';
 
 export default Proof;
